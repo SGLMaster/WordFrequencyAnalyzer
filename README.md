@@ -20,7 +20,7 @@ Also, you want to know the number of apperances for its present inflected forms 
 Finally, you would like to get the results written in another text file called "results.txt".
 
 All you need to do is run this inside the root program folder:
-
+```
 python main.py -f "file.txt" -o "results.txt" -w "wait" -i -s
-
+```
 That would generate a results file with the count for each form of the word and the total count.
