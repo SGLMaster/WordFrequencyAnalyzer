@@ -24,8 +24,6 @@ def is_consonant(character):
     return False
 
 def inflect_ing(word):
-    word = word.lower()
-
     if word.endswith('e') and not word.endswith('ee') and not word.endswith('ie'):
         wordInflected = word[:-1] + 'ing'
     elif word.endswith('ie'):
