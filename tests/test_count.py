@@ -11,7 +11,7 @@ class TestCount(unittest.TestCase):
         word = "text"
         fileTmp = open(".\\tests\\test_count.txt", 'r')
 
-        self.assertEqual(regular_count(word, fileTmp), 9)
+        self.assertEqual(regular_count(word, fileTmp), 10)
     
     def test_inflection_count(self):
         """
