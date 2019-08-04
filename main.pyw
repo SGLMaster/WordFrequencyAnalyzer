@@ -21,7 +21,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.lineInputFileName.setText(filename[0])
 
     def onClickOpenOutputFile(self):
-        filename = QtWidgets.QFileDialog.getSaveFileName(self, "File to save results...", "", 
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, "File to save results...", "Results", 
                                                         "Plain Text Files (*.txt)")
         self.ui.lineOutputFileName.setText(filename[0])
 
