@@ -9,7 +9,7 @@ def regular_count(wordToFind, fileToAnalyze):
     wordsInText = textInFile.split()
 
     for word in wordsInText:
-        if(word.lower().strip('-*\\/. ') == wordToFind.lower()):
+        if(word.lower().strip('-*\\/."\' ') == wordToFind.lower()):
             count = count + 1
 
     return count

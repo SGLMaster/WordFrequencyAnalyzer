@@ -20,7 +20,7 @@ class TestCount(unittest.TestCase):
         word = "text"
         fileTmp = open(".\\tests\\test_count.txt", 'r')
 
-        self.assertEqual(inflection_count(word, fileTmp), 13)
+        self.assertEqual(inflection_count(word, fileTmp), 14)
 
 if __name__ == '__main__':
     unittest.main()
