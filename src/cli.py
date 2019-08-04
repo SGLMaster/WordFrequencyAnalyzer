@@ -44,17 +44,33 @@ def analysis(args):
 def process_words(args, input_file, output_file):
     for word in args.wordlist:
         print("Analyzing " + word + " ... ", end='')
-        count = counter.regular_count(word, input_file)
+
+        count = counter.regular_count(word, input_file) # This is the default count without inflections
+        output_file.write(" " + word + ":" + str(count) + "\n")
+
+        total_count = count
 
         if args.switch_ing:
-            count += counter.regular_count(infl.inflect_ing(word), input_file)
+            word_ing = infl.inflect_ing(word)
+            count_ing = counter.regular_count(word_ing, input_file)
+            output_file.write("+" + word_ing + ":" + str(count_ing) + "\n")
+            total_count += count_ing
         if args.switch_plural:
-            count += counter.regular_count(infl.inflect_plural(word), input_file)
+            word_plural = infl.inflect_plural(word)
+            count_plural = counter.regular_count(word_plural, input_file)
+            output_file.write("+" + word_plural + ":" + str(count_plural) + "\n")
+            total_count += count_plural
         if args.switch_past:
-            count += counter.regular_count(infl.inflect_past(word), input_file)
+            word_past = infl.inflect_past(word)
+            count_past = counter.regular_count(word_past, input_file)
+            output_file.write("+" + word_past + ":" + str(count_past) + "\n")
+            total_count += count_past
         if args.switch_er:
-            count += counter.regular_count(infl.inflect_er(word), input_file) 
+            word_er = infl.inflect_er(word)
+            count_er = counter.regular_count(word_er, input_file)
+            output_file.write("+" + word_er + ":" + str(count_er) + "\n")
+            total_count += count_er
 
-        output_file.write(word + ":" + str(count) + "\n")
-
-        print(count)
+        print(total_count)
+        output_file.write("----------------------------------------------------------------\n")
+        output_file.write(" Total:" + str(total_count) + "\n\n")
