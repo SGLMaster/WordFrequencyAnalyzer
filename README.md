@@ -23,10 +23,4 @@ All you need to do is run this inside the root program folder:
 
 python main.py -f "file.txt" -o "results.txt" -w "wait" -i -s
 
-That would generate a results file with the following format:
-
- wait:2
-+waiting:1
-+waits:3
-----------------------------------------------------------------
- Total:6
+That would generate a results file with the count for each form of the word and the total count.
