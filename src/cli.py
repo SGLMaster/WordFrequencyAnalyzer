@@ -24,22 +24,20 @@ def configure_switches(parser):
                         help='Switch to activate the -er or -r inflection.')
 
 def analysis(args):
-    try:
-        input_file = open(args.input_filename, 'r')
-    except FileNotFoundError:
-        print("Input file not found. Please enter a valid filename.")
-        exit(1)
-
-    try:
-        output_file = open(args.output_filename, 'w')
-    except FileNotFoundError:
-        print("Output file not found. Please enter a valid filename.")
-        exit(1)
+    input_file = try_get_file(args.input_filename, 'r')
+    output_file = try_get_file(args.output_filename, 'w')
     
     print("\nFile \"" + args.input_filename + "\" opened for analysis...\n")
     process_words(args, input_file, output_file)
     input_file.close()
     output_file.close()
+
+def try_get_file(filename, mode):
+    try:
+        return open(filename, mode)
+    except FileNotFoundError:
+        print("File", filename, "not found. Please enter a valid filename.")
+        exit(1)
 
 def process_words(args, input_file, output_file):
     for word in args.wordlist:
