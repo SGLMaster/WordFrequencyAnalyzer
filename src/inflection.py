@@ -63,7 +63,11 @@ def inflect_past(word):
         wordInflected = word[:-1] + 'ied'
     elif get_syllable_count(word) == 1 and is_vowel(word[-2]) and is_consonant(word[-1]) \
         and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
-        wordInflected = word + word[-1] + 'ed'
+        #This is for cases with one syllable like "wait"
+        if len(word) >= 3 and is_vowel(word[-3]):
+            wordInflected = word + 'ed'
+        else:
+            wordInflected = word + word[-1] + 'ed'
     elif get_syllable_count(word) == 2 and is_vowel(word[-2]) and is_consonant(word[-1]) \
         and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
         if is_final_syllable_stressed(word):
@@ -81,7 +85,11 @@ def inflect_er(word):
         wordInflected = word[:-1] + 'ier'
     elif get_syllable_count(word) == 1 and is_vowel(word[-2]) and is_consonant(word[-1]) \
         and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
-        wordInflected = word + word[-1] + 'er'
+        #This is for cases with one syllable like "wait"
+        if len(word) >= 3 and is_vowel(word[-3]):
+            wordInflected = word + 'er'
+        else:
+            wordInflected = word + word[-1] + 'er'
     elif get_syllable_count(word) == 2 and is_vowel(word[-2]) and is_consonant(word[-1]) \
         and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
         if is_final_syllable_stressed(word):

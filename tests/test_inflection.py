@@ -1,4 +1,6 @@
 import unittest
+import pronouncing
+import syllables
 
 import src.inflection as infl
 
@@ -94,6 +96,7 @@ class TestInflection(unittest.TestCase):
 
         # For one syllable words
         self.assertEqual(infl.inflect_past("stop"), "stopped")
+        self.assertEqual(infl.inflect_past("wait"), "waited")
 
         # For two syllable words
         # Stressed in the first syllable
@@ -120,6 +123,8 @@ class TestInflection(unittest.TestCase):
         # For one syllable words
         self.assertEqual(infl.inflect_er("fat"), "fatter")
         self.assertEqual(infl.inflect_er("wet"), "wetter")
+        self.assertEqual(infl.inflect_er("wait"), "waiter")
+        self.assertEqual(infl.inflect_er("eat"), "eater")
 
         # For two syllable words
         # Stressed in the first syllable
