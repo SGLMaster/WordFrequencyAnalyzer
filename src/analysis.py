@@ -3,27 +3,30 @@ import src.inflection as infl
 
 def analyze(args, logger):
     input_file = open(args.input_filename, 'r')
-    process_words(args, input_file, logger)
+    process_file(args, input_file, logger)
     input_file.close()
 
-def process_words(args, input_file, logger):
+def process_file(args, input_file, logger):
     for word in args.wordlist:
-        count = counter.regular_count(word, input_file) # This is the default count without inflections
-        logger.log(" " + word + ":" + str(count))
+        process_word(word, args, input_file, logger)
 
-        total_count = count
+def process_word(word, args, input_file, logger):
+    count = counter.regular_count(word, input_file) # This is the default count without inflections
+    logger.log(" " + word + ":" + str(count))
 
-        if args.switch_ing:
-            total_count += get_inflected_count(word, infl.inflect_ing, input_file, logger)
-        if args.switch_plural:
-            total_count += get_inflected_count(word, infl.inflect_plural, input_file, logger)
-        if args.switch_past:
-            total_count += get_inflected_count(word, infl.inflect_past, input_file, logger)
-        if args.switch_er:
-            total_count += get_inflected_count(word, infl.inflect_er, input_file, logger)
+    total_count = count
 
-        logger.log("----------------------------------------------------------------")
-        logger.log(" Total:" + str(total_count) + "\n")
+    if args.switch_ing:
+        total_count += get_inflected_count(word, infl.inflect_ing, input_file, logger)
+    if args.switch_plural:
+        total_count += get_inflected_count(word, infl.inflect_plural, input_file, logger)
+    if args.switch_past:
+        total_count += get_inflected_count(word, infl.inflect_past, input_file, logger)
+    if args.switch_er:
+        total_count += get_inflected_count(word, infl.inflect_er, input_file, logger)
+
+    logger.log("----------------------------------------------------------------")
+    logger.log(" Total:" + str(total_count) + "\n")
 
 def get_inflected_count(word, inflection_func, input_file, logger):
     inflected_word = inflection_func(word)
