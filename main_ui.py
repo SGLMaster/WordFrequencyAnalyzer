@@ -86,6 +86,7 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName("label_3")
         self.textResults = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.textResults.setGeometry(QtCore.QRect(10, 140, 581, 421))
+        self.textResults.setReadOnly(True)
         self.textResults.setObjectName("textResults")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(10, 110, 91, 16))
