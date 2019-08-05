@@ -41,6 +41,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushOpenInputFile">
     <property name="geometry">
@@ -199,6 +202,9 @@
       <width>491</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="pushOpenOutputFile">
