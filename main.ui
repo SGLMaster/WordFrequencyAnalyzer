@@ -175,54 +175,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>121</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>File to save results:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineOutputFileName">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>140</y>
-      <width>491</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushOpenOutputFile">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>140</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Open...</string>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushRun">
     <property name="geometry">
      <rect>
@@ -263,6 +215,35 @@
     </property>
     <property name="text">
      <string>Word:</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="textResults">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>581</width>
+      <height>421</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Results:</string>
     </property>
    </widget>
   </widget>

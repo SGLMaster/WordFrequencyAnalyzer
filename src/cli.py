@@ -2,13 +2,17 @@ import argparse
 
 import src.analysis as analysis
 
+from src.log import CliLogger
+
 def run():
     parser = argparse.ArgumentParser(description="Word Frequency Analyzer")
     configure_switches(parser)
 
     args = parser.parse_args()
+    logger = CliLogger()
+
     try:
-        analysis.analyze(args)
+        analysis.analyze(args, logger)
     except FileNotFoundError as e:
         print("\nFile", e.filename , "not found. Please enter a valid filename.")
 

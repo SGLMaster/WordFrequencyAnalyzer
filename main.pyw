@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets
 from main_ui import Ui_MainWindow
 
 import src.analysis as analysis
+from src.log import QtPlainTextLogger
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -14,7 +15,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Connect events
         self.ui.pushOpenInputFile.clicked.connect(self.onClickOpenInputFile)
-        self.ui.pushOpenOutputFile.clicked.connect(self.onClickOpenOutputFile)
         self.ui.pushRun.clicked.connect(self.onClickRun)
     
     def onClickOpenInputFile(self):
@@ -22,28 +22,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                         "Plain Text Files (*.txt);;All Files (*.*)")
         self.ui.lineInputFileName.setText(filename[0])
 
-    def onClickOpenOutputFile(self):
-        filename = QtWidgets.QFileDialog.getSaveFileName(self, "File to save results...", "Results", 
-                                                        "Plain Text Files (*.txt)")
-        self.ui.lineOutputFileName.setText(filename[0])
-
     def onClickRun(self):
         args = self.generateArgsFromUi()
-
+        
         if args.input_filename == '':
             self.showErrorMessage("Please select a file to analyze.")
             return
-
-        if args.output_filename == '':
-            self.showErrorMessage("Please enter a valid name for the output file.")
-            return
-
         if args.wordlist[0] == '':
             self.showErrorMessage("Please enter a valid word to search.")
             return
 
+        self.ui.textResults.clear() # We clear the text edit before logging the current analysis
+        logger = QtPlainTextLogger(self.ui.textResults)
+
         try:
-            analysis.analyze(args)
+            analysis.analyze(args, logger)
         except FileNotFoundError as e:
             self.showErrorMessage("File" + e.filename + "not found. Please enter valid filenames.")
 
@@ -61,7 +54,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def generateArgsFromUi(self):
         args = self.Arguments()
         args.input_filename = self.ui.lineInputFileName.text()
-        args.output_filename = self.ui.lineOutputFileName.text()
 
         args.wordlist = [self.ui.lineWordToFind.text().strip()]
 
