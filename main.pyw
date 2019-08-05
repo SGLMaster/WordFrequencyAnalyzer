@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 
 from main_ui import Ui_MainWindow
 
-import src.cli as cli
+import src.analysis as analysis
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -35,7 +35,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
 
         try:
-            cli.analyze(args)
+            analysis.analyze(args)
         except FileNotFoundError:
             self.showErrorMessage("File not found. Please enter valid filenames.")
 
