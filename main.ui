@@ -95,7 +95,7 @@
     <property name="title">
      <string>Inflect Options</string>
     </property>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="checkIng">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -114,7 +114,7 @@
       <string>-ing</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="checkPlural">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -133,7 +133,7 @@
       <string>-s -es</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_3">
+    <widget class="QCheckBox" name="checkPast">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -152,7 +152,7 @@
       <string>-ed -d</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_4">
+    <widget class="QCheckBox" name="checkEr">
      <property name="geometry">
       <rect>
        <x>180</x>
@@ -230,7 +230,7 @@
      <string>Run</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="lineWordToFind">
     <property name="geometry">
      <rect>
       <x>10</x>
