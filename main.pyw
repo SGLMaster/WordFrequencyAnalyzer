@@ -29,7 +29,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def onClickRun(self):
         args = self.generateArgs()
-        cli.analysis(args)
+        cli.analyze(args)
 
     # This empty class is used to mock the args class we need to pass to the CLI method that performs the analysis
     class Arguments():
