@@ -9,6 +9,9 @@ class PlainTextFileLogger:
     def log(self, string):
         self.file.write(string + '\n')
 
+    def close(self):
+        self.file.close()
+
 class QtPlainTextLogger:
     def __init__(self, textEdit):
         self.textEdit = textEdit
