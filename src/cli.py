@@ -8,7 +8,7 @@ def run():
     configure_switches(parser)
 
     args = parser.parse_args()
-    analysis(args)
+    analyze(args)
 
 def configure_switches(parser):
     parser.add_argument('-f', dest='input_filename', help="Path to the text file to analyze.")
@@ -23,7 +23,7 @@ def configure_switches(parser):
     parser.add_argument('-e', action='store_true', default=False, dest='switch_er', 
                         help='Switch to activate the -er or -r inflection.')
 
-def analysis(args):
+def analyze(args):
     input_file = try_get_file(args.input_filename, 'r')
     output_file = try_get_file(args.output_filename, 'w')
     
