@@ -1,5 +1,6 @@
 # WordFrequencyAnalyzer
-Count the number of appearances of a word and its inflected forms in a text.
+
+**Count the number of appearances of a word and its inflected forms in a text.**
 
 This is a simple CLI script that allows you to count the number of times a word appears inside a given file text.
 Furthermore, it also has the ability to count the apperances of its inflected forms.
@@ -20,7 +21,13 @@ Also, you want to know the number of apperances for its present inflected forms 
 Finally, you would like to get the results written in another text file called "results.txt".
 
 All you need to do is run this inside the root program folder:
+
 ```
 python main.py -f "file.txt" -o "results.txt" -w "wait" -i -s
 ```
+
 That would generate a results file with the count for each form of the word and the total count.
+
+## Graphical User Interface
+
+There's a .pyw script in development to allow interfacing the program through a GUI created with PyQt5 library.
