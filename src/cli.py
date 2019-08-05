@@ -37,7 +37,7 @@ def try_get_file(filename, mode):
         return open(filename, mode)
     except FileNotFoundError:
         print("File", filename, "not found. Please enter a valid filename.")
-        exit(1)
+        raise
 
 def process_words(args, input_file, output_file):
     for word in args.wordlist:

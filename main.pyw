@@ -29,7 +29,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def onClickRun(self):
         args = self.generateArgs()
-        cli.analyze(args)
+
+        if args.wordlist[0] == '':
+            self.showErrorMessage("Please enter a valid word to search.")
+            return
+
+        try:
+            cli.analyze(args)
+        except FileNotFoundError:
+            self.showErrorMessage("File not found. Please enter valid filenames.")
+
+    def showErrorMessage(self, message, title="Error"):
+        msg = QtWidgets.QMessageBox(self)
+        msg.setIcon(QtWidgets.QMessageBox.Critical)
+        msg.setWindowTitle(title)
+        msg.setText(message)
+        msg.show()
 
     # This empty class is used to mock the args class we need to pass to the CLI method that performs the analysis
     class Arguments():
@@ -40,7 +55,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         args.input_filename = self.ui.lineInputFileName.text()
         args.output_filename = self.ui.lineOutputFileName.text()
 
-        args.wordlist = [self.ui.lineWordToFind.text()]
+        args.wordlist = [self.ui.lineWordToFind.text().strip()]
 
         args.switch_ing = self.ui.checkIng.isChecked()
         args.switch_plural = self.ui.checkPlural.isChecked()
