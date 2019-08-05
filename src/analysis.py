@@ -2,20 +2,13 @@ import src.counter as counter
 import src.inflection as infl
 
 def analyze(args):
-    input_file = try_get_file(args.input_filename, 'r')
-    output_file = try_get_file(args.output_filename, 'w')
+    input_file = open(args.input_filename, 'r')
+    output_file = open(args.output_filename, 'w')
     
     print("\nFile \"" + args.input_filename + "\" opened for analysis...\n")
     process_words(args, input_file, output_file)
     input_file.close()
     output_file.close()
-
-def try_get_file(filename, mode):
-    try:
-        return open(filename, mode)
-    except FileNotFoundError:
-        print("File", filename, "not found. Please enter a valid filename.")
-        raise
 
 def process_words(args, input_file, output_file):
     for word in args.wordlist:

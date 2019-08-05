@@ -7,7 +7,10 @@ def run():
     configure_switches(parser)
 
     args = parser.parse_args()
-    analysis.analyze(args)
+    try:
+        analysis.analyze(args)
+    except FileNotFoundError as e:
+        print("\nFile", e.filename , "not found. Please enter a valid filename.")
 
 def configure_switches(parser):
     parser.add_argument('-f', dest='input_filename', help="Path to the text file to analyze.")

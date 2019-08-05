@@ -30,14 +30,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def onClickRun(self):
         args = self.generateArgs()
 
+        if args.input_filename == '':
+            self.showErrorMessage("Please select a file to analyze.")
+            return
+
+        if args.output_filename == '':
+            self.showErrorMessage("Please enter a valid name for the output file.")
+            return
+
         if args.wordlist[0] == '':
             self.showErrorMessage("Please enter a valid word to search.")
             return
 
         try:
             analysis.analyze(args)
-        except FileNotFoundError:
-            self.showErrorMessage("File not found. Please enter valid filenames.")
+        except FileNotFoundError as e:
+            self.showErrorMessage("File" + e.filename + "not found. Please enter valid filenames.")
 
     def showErrorMessage(self, message, title="Error"):
         msg = QtWidgets.QMessageBox(self)
