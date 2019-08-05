@@ -28,7 +28,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.lineOutputFileName.setText(filename[0])
 
     def onClickRun(self):
-        args = self.generateArgs()
+        args = self.generateArgsFromUi()
 
         if args.input_filename == '':
             self.showErrorMessage("Please select a file to analyze.")
@@ -58,7 +58,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     class Arguments():
         pass
 
-    def generateArgs(self):
+    def generateArgsFromUi(self):
         args = self.Arguments()
         args.input_filename = self.ui.lineInputFileName.text()
         args.output_filename = self.ui.lineOutputFileName.text()
