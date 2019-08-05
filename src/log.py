@@ -2,6 +2,13 @@ class CliLogger:
     def log(self, string):
         print(string)
 
+class PlainTextFileLogger:
+    def __init__(self, file):
+        self.file = file
+
+    def log(self, string):
+        self.file.write(string + '\n')
+
 class QtPlainTextLogger:
     def __init__(self, textEdit):
         self.textEdit = textEdit

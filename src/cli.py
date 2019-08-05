@@ -2,6 +2,7 @@ import argparse
 
 import src.analysis as analysis
 
+from src.log import PlainTextFileLogger
 from src.log import CliLogger
 
 def run():
@@ -9,12 +10,29 @@ def run():
     configure_switches(parser)
 
     args = parser.parse_args()
-    logger = CliLogger()
+
+    # If the user specified an output filename
+    if args.output_filename != None:
+        try:
+            output_file = open(args.output_filename, 'w')
+        except FileNotFoundError:
+            print("\nInvalid output file name: " + args.output_filename)
+        logger = PlainTextFileLogger(output_file)
+    else:
+        logger = CliLogger()
 
     try:
+        print("\nStarting Analysis...\n")
         analysis.analyze(args, logger)
     except FileNotFoundError as e:
         print("\nFile", e.filename , "not found. Please enter a valid filename.")
+        exit(1)
+
+    try:
+        output_file.close()
+        print('\nResults of the analysis were written in file ' + args.output_filename)
+    except NameError:
+        pass
 
 def configure_switches(parser):
     parser.add_argument('-f', dest='input_filename', help="Path to the text file to analyze.")
