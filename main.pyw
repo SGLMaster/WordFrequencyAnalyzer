@@ -14,22 +14,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self)
 
         # Connect events
-        self.ui.pushOpenInputFile.clicked.connect(self.onClickOpenInputFile)
-        self.ui.pushRun.clicked.connect(self.onClickRun)
+        self.ui.pushOpenInputFile.clicked.connect(self.open_input_file)
+        self.ui.pushRun.clicked.connect(self.run_analysis)
+        self.ui.pushAddWord.clicked.connect(self.add_word)
+        self.ui.lineWordToFind.returnPressed.connect(self.add_word)
     
-    def onClickOpenInputFile(self):
+    def open_input_file(self):
         filename = QtWidgets.QFileDialog.getOpenFileName(self, "File to analyze...", "", 
                                                         "Plain Text Files (*.txt);;All Files (*.*)")
         self.ui.lineInputFileName.setText(filename[0])
 
-    def onClickRun(self):
-        args = self.generateArgsFromUi()
+    def run_analysis(self):
+        args = self.generate_args_from_ui()
         
         if args.input_filename == '':
-            self.showErrorMessage("Please select a file to analyze.")
+            self.show_error_message("Please select a file to analyze.")
             return
         if args.wordlist[0] == '':
-            self.showErrorMessage("Please enter a valid word to search.")
+            self.show_error_message("Please enter a valid word to search.")
             return
 
         self.ui.textResults.clear() # We clear the text edit before logging the current analysis
@@ -38,9 +40,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             analysis.analyze(args, logger)
         except FileNotFoundError as e:
-            self.showErrorMessage("File" + e.filename + "not found. Please enter valid filenames.")
+            self.show_error_message("File" + e.filename + "not found. Please enter valid filenames.")
 
-    def showErrorMessage(self, message, title="Error"):
+    def add_word(self):
+        self.ui.listWords.addItem(self.ui.lineWordToFind.text())
+        self.ui.lineWordToFind.clear()
+
+    def show_error_message(self, message, title="Error"):
         msg = QtWidgets.QMessageBox(self)
         msg.setIcon(QtWidgets.QMessageBox.Critical)
         msg.setWindowTitle(title)
@@ -51,11 +57,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     class Arguments():
         pass
 
-    def generateArgsFromUi(self):
+    def generate_args_from_ui(self):
         args = self.Arguments()
         args.input_filename = self.ui.lineInputFileName.text()
 
-        args.wordlist = [self.ui.lineWordToFind.text().strip()]
+        args.wordlist = [str(self.ui.listWords.item(i).text()) for i in range(self.ui.listWords.count())]
 
         args.switch_ing = self.ui.checkIng.isChecked()
         args.switch_plural = self.ui.checkPlural.isChecked()

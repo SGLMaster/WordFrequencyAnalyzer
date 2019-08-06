@@ -1,2 +1,4 @@
 .vscode
 __pycache__
+resources/Thumbs.db
+__pycache__/main_ui.cpython-37.pyc

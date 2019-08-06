@@ -31,6 +31,9 @@
   <property name="windowTitle">
    <string>Word Frequency Analyzer</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="lineInputFileName">
     <property name="geometry">
@@ -49,13 +52,28 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>30</y>
-      <width>75</width>
-      <height>23</height>
+      <y>12</y>
+      <width>51</width>
+      <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover {
+	background-color: rgb(255, 240, 219);
+}</string>
+    </property>
     <property name="text">
-     <string>Open...</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources/icons.qrc">
+      <normaloff>:/icons/open-file.png</normaloff>:/icons/open-file.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
     <property name="flat">
      <bool>false</bool>
@@ -179,13 +197,28 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>80</y>
-      <width>75</width>
-      <height>23</height>
+      <y>70</y>
+      <width>51</width>
+      <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover {
+	background-color: rgb(255, 240, 219);
+}</string>
+    </property>
     <property name="text">
-     <string>Run</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources/icons.qrc">
+      <normaloff>:/icons/run.png</normaloff>:/icons/run.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineWordToFind">
@@ -220,10 +253,10 @@
    <widget class="QPlainTextEdit" name="textResults">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>280</x>
       <y>140</y>
-      <width>581</width>
-      <height>421</height>
+      <width>311</width>
+      <height>411</height>
      </rect>
     </property>
     <property name="readOnly">
@@ -233,7 +266,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>280</x>
       <y>110</y>
       <width>91</width>
       <height>16</height>
@@ -249,6 +282,41 @@
      <string>Results:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushAddWord">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover {
+	background-color: rgb(255, 240, 219);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources/icons.qrc">
+      <normaloff>:/icons/icons8-plus-sign.png</normaloff>:/icons/icons8-plus-sign.png</iconset>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWords">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>256</width>
+      <height>411</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -262,6 +330,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
