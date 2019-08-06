@@ -44,7 +44,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.show_error_message("File" + e.filename + "not found. Please enter valid filenames.")
 
     def add_word(self):
-        self.ui.listWords.addItem(self.ui.lineWordToFind.text())
+        word = self.ui.lineWordToFind.text().strip()
+
+        if(word == ''):
+            self.show_error_message("Can't add empty word to list.")
+            return
+
+        self.ui.listWords.addItem(word)
         self.ui.lineWordToFind.clear()
 
     def save_results(self):
