@@ -2,7 +2,13 @@ import pronouncing
 
 def get_syllable_count(word):
     pronunciation_list = pronouncing.phones_for_word(word)
-    return pronouncing.syllable_count(pronunciation_list[0])
+
+    try:
+        syllable_count = pronouncing.syllable_count(pronunciation_list[0])
+    except IndexError:
+        syllable_count = 0
+
+    return syllable_count
 
 def is_final_syllable_stressed(word):
     phones_list = pronouncing.phones_for_word(word)
