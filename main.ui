@@ -226,7 +226,7 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>261</width>
+      <width>221</width>
       <height>21</height>
      </rect>
     </property>
@@ -285,8 +285,8 @@
    <widget class="QPushButton" name="pushAddWord">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>120</y>
+      <x>240</x>
+      <y>80</y>
       <width>21</width>
       <height>23</height>
      </rect>
@@ -374,7 +374,7 @@
      </rect>
     </property>
     <property name="toolTip">
-     <string>Add Word</string>
+     <string>Remove Word</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover {

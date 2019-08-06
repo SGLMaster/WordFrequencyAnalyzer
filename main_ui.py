@@ -92,7 +92,7 @@ class Ui_MainWindow(object):
         self.pushRun.setIconSize(QtCore.QSize(32, 32))
         self.pushRun.setObjectName("pushRun")
         self.lineWordToFind = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineWordToFind.setGeometry(QtCore.QRect(10, 80, 261, 21))
+        self.lineWordToFind.setGeometry(QtCore.QRect(10, 80, 221, 21))
         self.lineWordToFind.setObjectName("lineWordToFind")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(10, 60, 91, 16))
@@ -113,7 +113,7 @@ class Ui_MainWindow(object):
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
         self.pushAddWord = QtWidgets.QPushButton(self.centralwidget)
-        self.pushAddWord.setGeometry(QtCore.QRect(220, 120, 21, 23))
+        self.pushAddWord.setGeometry(QtCore.QRect(240, 80, 21, 23))
         self.pushAddWord.setStyleSheet("QPushButton:hover {\n"
 "    background-color: rgb(255, 240, 219);\n"
 "}")
@@ -180,6 +180,6 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "Results:"))
         self.pushAddWord.setToolTip(_translate("MainWindow", "Add Word"))
         self.label_5.setText(_translate("MainWindow", "List of Words to Find:"))
-        self.pushRemoveWord.setToolTip(_translate("MainWindow", "Add Word"))
+        self.pushRemoveWord.setToolTip(_translate("MainWindow", "Remove Word"))
 
 import icons_rc
