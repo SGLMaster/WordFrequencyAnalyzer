@@ -285,7 +285,7 @@
    <widget class="QPushButton" name="pushAddWord">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>220</x>
       <y>120</y>
       <width>21</width>
       <height>23</height>
@@ -359,6 +359,34 @@
     </property>
     <property name="text">
      <string>List of Words to Find:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushRemoveWord">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>120</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Add Word</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover {
+	background-color: rgb(255, 240, 219);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources/icons.qrc">
+      <normaloff>:/icons/icons8-minus-sign.png</normaloff>:/icons/icons8-minus-sign.png</iconset>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

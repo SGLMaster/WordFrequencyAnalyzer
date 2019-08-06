@@ -113,7 +113,7 @@ class Ui_MainWindow(object):
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
         self.pushAddWord = QtWidgets.QPushButton(self.centralwidget)
-        self.pushAddWord.setGeometry(QtCore.QRect(240, 120, 21, 23))
+        self.pushAddWord.setGeometry(QtCore.QRect(220, 120, 21, 23))
         self.pushAddWord.setStyleSheet("QPushButton:hover {\n"
 "    background-color: rgb(255, 240, 219);\n"
 "}")
@@ -143,6 +143,17 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.label_5.setFont(font)
         self.label_5.setObjectName("label_5")
+        self.pushRemoveWord = QtWidgets.QPushButton(self.centralwidget)
+        self.pushRemoveWord.setGeometry(QtCore.QRect(240, 120, 21, 23))
+        self.pushRemoveWord.setStyleSheet("QPushButton:hover {\n"
+"    background-color: rgb(255, 240, 219);\n"
+"}")
+        self.pushRemoveWord.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/icons/icons8-minus-sign.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushRemoveWord.setIcon(icon4)
+        self.pushRemoveWord.setFlat(False)
+        self.pushRemoveWord.setObjectName("pushRemoveWord")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 580, 21))
@@ -168,5 +179,6 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "Results:"))
         self.pushAddWord.setToolTip(_translate("MainWindow", "Add Word"))
         self.label_5.setText(_translate("MainWindow", "List of Words to Find:"))
+        self.pushRemoveWord.setToolTip(_translate("MainWindow", "Add Word"))
 
 import icons_rc
