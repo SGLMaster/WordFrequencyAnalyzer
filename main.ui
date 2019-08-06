@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>580</width>
     <height>600</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>600</width>
+    <width>580</width>
     <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>600</width>
+    <width>580</width>
     <height>600</height>
    </size>
   </property>
@@ -254,9 +254,9 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>140</y>
-      <width>311</width>
-      <height>411</height>
+      <y>150</y>
+      <width>281</width>
+      <height>401</height>
      </rect>
     </property>
     <property name="readOnly">
@@ -267,7 +267,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>110</y>
+      <y>120</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -285,11 +285,14 @@
    <widget class="QPushButton" name="pushAddWord">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>110</y>
+      <x>240</x>
+      <y>120</y>
       <width>21</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Add Word</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover {
@@ -311,10 +314,51 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>140</y>
-      <width>256</width>
-      <height>411</height>
+      <y>150</y>
+      <width>251</width>
+      <height>401</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushSaveAs">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>120</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover {
+	background-color: rgb(255, 240, 219);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources/icons.qrc">
+      <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>List of Words to Find:</string>
     </property>
    </widget>
   </widget>
@@ -323,7 +367,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>580</width>
      <height>21</height>
     </rect>
    </property>
