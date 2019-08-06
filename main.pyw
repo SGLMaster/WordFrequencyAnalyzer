@@ -18,11 +18,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.pushRun.clicked.connect(self.run_analysis)
         self.ui.pushAddWord.clicked.connect(self.add_word)
         self.ui.lineWordToFind.returnPressed.connect(self.add_word)
+        self.ui.pushSaveAs.clicked.connect(self.save_results)
     
     def open_input_file(self):
         filename = QtWidgets.QFileDialog.getOpenFileName(self, "File to analyze...", "", 
-                                                        "Plain Text Files (*.txt);;All Files (*.*)")
-        self.ui.lineInputFileName.setText(filename[0])
+                                                        "Plain Text Files (*.txt);;All Files (*.*)")[0]
+        self.ui.lineInputFileName.setText(filename)
 
     def run_analysis(self):
         args = self.generate_args_from_ui()
@@ -45,6 +46,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def add_word(self):
         self.ui.listWords.addItem(self.ui.lineWordToFind.text())
         self.ui.lineWordToFind.clear()
+
+    def save_results(self):
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, "File to analyze...", "", "Plain Text Files (*.txt)")[0]
+
+        try:
+            fileToWrite = open(filename, 'w')
+            results = self.ui.textResults.toPlainText()
+            fileToWrite.write(results)
+            fileToWrite.close
+        except FileNotFoundError:
+            pass
 
     def show_error_message(self, message, title="Error"):
         msg = QtWidgets.QMessageBox(self)
