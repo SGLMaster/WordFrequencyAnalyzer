@@ -42,13 +42,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             analysis.analyze(args, logger)
         except FileNotFoundError as e:
-            self.show_error_message("File" + e.filename + "not found. Please enter valid filenames.")
+            self.show_error_message("File " + e.filename + " not found. Please enter a valid filename.")
 
     def add_word(self):
         word = self.ui.lineWordToFind.text().strip()
 
         if(word == ''):
-            self.show_error_message("Can't add empty word to list.")
+            self.show_information_message("Can't add empty word to list.")
             return
 
         self.ui.listWords.addItem(word)
@@ -72,8 +72,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             pass
 
     def show_error_message(self, message, title="Error"):
+        self.show_message_common(message, title, QtWidgets.QMessageBox.Critical)
+
+    def show_information_message(self, message, title="Info"):
+        self.show_message_common(message, title, QtWidgets.QMessageBox.Information)
+
+    def show_message_common(self, message, title, icon_type):
         msg = QtWidgets.QMessageBox(self)
-        msg.setIcon(QtWidgets.QMessageBox.Critical)
+        msg.setIcon(icon_type)
         msg.setWindowTitle(title)
         msg.setText(message)
         msg.show()
