@@ -319,6 +319,9 @@
       <height>401</height>
      </rect>
     </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::ExtendedSelection</enum>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushSaveAs">
     <property name="geometry">

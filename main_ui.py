@@ -125,6 +125,7 @@ class Ui_MainWindow(object):
         self.pushAddWord.setObjectName("pushAddWord")
         self.listWords = QtWidgets.QListWidget(self.centralwidget)
         self.listWords.setGeometry(QtCore.QRect(10, 150, 251, 401))
+        self.listWords.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.listWords.setObjectName("listWords")
         self.pushSaveAs = QtWidgets.QPushButton(self.centralwidget)
         self.pushSaveAs.setGeometry(QtCore.QRect(540, 120, 21, 23))
