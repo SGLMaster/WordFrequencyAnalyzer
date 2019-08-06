@@ -17,6 +17,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.pushOpenInputFile.clicked.connect(self.open_input_file)
         self.ui.pushRun.clicked.connect(self.run_analysis)
         self.ui.pushAddWord.clicked.connect(self.add_word)
+        self.ui.pushRemoveWord.clicked.connect(self.remove_word)
         self.ui.lineWordToFind.returnPressed.connect(self.add_word)
         self.ui.pushSaveAs.clicked.connect(self.save_results)
     
@@ -52,6 +53,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.ui.listWords.addItem(word)
         self.ui.lineWordToFind.clear()
+    
+    def remove_word(self):
+        listWords=self.ui.listWords.selectedItems()
+        if not listWords: return        
+        for word in listWords:
+            self.ui.listWords.takeItem(self.ui.listWords.row(word))
 
     def save_results(self):
         filename = QtWidgets.QFileDialog.getSaveFileName(self, "File to analyze...", "", "Plain Text Files (*.txt)")[0]
