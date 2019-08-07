@@ -74,7 +74,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.ui.listWords.takeItem(self.ui.listWords.row(word))
 
     def save_results(self):
-        filename = QtWidgets.QFileDialog.getSaveFileName(self, "File to analyze...", "", "Plain Text Files (*.txt)")[0]
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, "Save results...", "", "Plain Text Files (*.txt)")[0]
 
         try:
             fileToWrite = open(filename, 'w')
