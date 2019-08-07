@@ -20,3 +20,14 @@ class QtPlainTextLogger:
 
     def log(self, string):
         self.textEdit.appendPlainText(string)
+
+
+class StrLogger:
+    def __init__(self):
+        self.string = ""
+
+    def log(self, string):
+        self.string += string + '\n'
+
+    def get_string(self):
+        return self.string
