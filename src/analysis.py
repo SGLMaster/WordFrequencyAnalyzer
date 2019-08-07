@@ -25,7 +25,7 @@ def process_word(word, args, input_file, logger):
     if args.switch_er:
         total_count += get_inflected_count(word, infl.inflect_er, input_file, logger)
 
-    logger.log("----------------------------------------------------------------")
+    logger.log("--------------------------------------------------------------")
     logger.log(" Total:" + str(total_count) + "\n")
 
 def get_inflected_count(word, inflection_func, input_file, logger):
