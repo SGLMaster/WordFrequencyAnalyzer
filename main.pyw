@@ -1,9 +1,17 @@
 from PyQt5 import QtWidgets
 
 from main_ui import Ui_MainWindow
+from about_ui import Ui_DialogAbout
 
 import src.analysis as analysis
 from src.log import QtPlainTextLogger
+
+class DialogAbout(QtWidgets.QDialog, Ui_DialogAbout):
+    def __init__(self, *args, **kwargs):
+        QtWidgets.QDialog.__init__(self, *args, **kwargs)
+
+        self.dialog_ui = Ui_DialogAbout()
+        self.dialog_ui.setupUi(self)
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -21,6 +29,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.pushLoadWordsFromFile.clicked.connect(self.load_words_from_file)
         self.ui.lineWordToFind.returnPressed.connect(self.add_word)
         self.ui.pushSaveAs.clicked.connect(self.save_results)
+
+        self.ui.actionAbout.triggered.connect(self.show_about_dialog)
+
+        self.dialog_about = DialogAbout()
     
     def open_input_file(self):
         filename = QtWidgets.QFileDialog.getOpenFileName(self, "File to analyze...", "", 
@@ -98,6 +110,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             fileToWrite.close
         except FileNotFoundError:
             pass
+
+    def show_about_dialog(self):
+        self.dialog_about.show()
 
     def show_error_message(self, message, title="Error"):
         self.show_message_common(message, title, QtWidgets.QMessageBox.Critical)

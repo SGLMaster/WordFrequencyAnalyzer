@@ -452,8 +452,32 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAbout">
+    <property name="styleSheet">
+     <string notr="true">QMenu::item {
+	padding: 8px;
+}
+
+QMenu::item:selected{
+	font-weight: bold;
+}
+QMenu::item:!selected{
+	text-align: right;
+}</string>
+    </property>
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About...</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="resources/icons.qrc"/>

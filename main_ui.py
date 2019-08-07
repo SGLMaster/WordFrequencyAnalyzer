@@ -172,10 +172,26 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 580, 21))
         self.menubar.setObjectName("menubar")
+        self.menuAbout = QtWidgets.QMenu(self.menubar)
+        self.menuAbout.setStyleSheet("QMenu::item {\n"
+"    padding: 8px;\n"
+"}\n"
+"\n"
+"QMenu::item:selected{\n"
+"    font-weight: bold;\n"
+"}\n"
+"QMenu::item:!selected{\n"
+"    text-align: right;\n"
+"}")
+        self.menuAbout.setObjectName("menuAbout")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionAbout = QtWidgets.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
+        self.menuAbout.addAction(self.actionAbout)
+        self.menubar.addAction(self.menuAbout.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -198,5 +214,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "List of Words to Find:"))
         self.pushRemoveWord.setToolTip(_translate("MainWindow", "Remove word"))
         self.pushLoadWordsFromFile.setToolTip(_translate("MainWindow", "Load words from file..."))
+        self.menuAbout.setTitle(_translate("MainWindow", "About"))
+        self.actionAbout.setText(_translate("MainWindow", "About..."))
 
 import icons_rc
