@@ -1,4 +1,10 @@
 .vscode
-__pycache__
-resources/Thumbs.db
-__pycache__/main_ui.cpython-37.pyc
+
+# Python cache folders
+__pycache__/
+
+# Windows Thumbs Files
+*/Thumbs.db
+
+# Local Folder for creating NSIST installer
+extra_sources/
