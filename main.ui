@@ -57,6 +57,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>Open file to analyze...</string>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover {
 	background-color: rgb(255, 240, 219);
@@ -203,7 +206,7 @@
      </rect>
     </property>
     <property name="toolTip">
-     <string>Run Analysis</string>
+     <string>Run analysis</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover {
@@ -250,7 +253,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Word:</string>
+     <string>Add Word:</string>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="textResults">
@@ -295,7 +298,7 @@
      </rect>
     </property>
     <property name="toolTip">
-     <string>Add Word</string>
+     <string>Add word</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover {
@@ -334,6 +337,9 @@
       <width>21</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Save results as...</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover {
@@ -377,7 +383,7 @@
      </rect>
     </property>
     <property name="toolTip">
-     <string>Remove Word</string>
+     <string>Remove word</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover {

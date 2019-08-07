@@ -174,17 +174,19 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Word Frequency Analyzer"))
+        self.pushOpenInputFile.setToolTip(_translate("MainWindow", "Open file to analyze..."))
         self.label.setText(_translate("MainWindow", "File to analyze:"))
         self.groupInflectOpts.setTitle(_translate("MainWindow", "Inflect Options"))
         self.checkIng.setText(_translate("MainWindow", "-ing"))
         self.checkPlural.setText(_translate("MainWindow", "-s -es"))
         self.checkPast.setText(_translate("MainWindow", "-ed -d"))
         self.checkEr.setText(_translate("MainWindow", "-er"))
-        self.pushRun.setToolTip(_translate("MainWindow", "Run Analysis"))
-        self.label_3.setText(_translate("MainWindow", "Word:"))
+        self.pushRun.setToolTip(_translate("MainWindow", "Run analysis"))
+        self.label_3.setText(_translate("MainWindow", "Add Word:"))
         self.label_4.setText(_translate("MainWindow", "Results:"))
-        self.pushAddWord.setToolTip(_translate("MainWindow", "Add Word"))
+        self.pushAddWord.setToolTip(_translate("MainWindow", "Add word"))
+        self.pushSaveAs.setToolTip(_translate("MainWindow", "Save results as..."))
         self.label_5.setText(_translate("MainWindow", "List of Words to Find:"))
-        self.pushRemoveWord.setToolTip(_translate("MainWindow", "Remove Word"))
+        self.pushRemoveWord.setToolTip(_translate("MainWindow", "Remove word"))
 
 import icons_rc
