@@ -32,8 +32,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if args.input_filename == '':
             self.show_error_message("Please select a file to analyze.")
             return
-        if args.wordlist[0] == '':
-            self.show_error_message("Please enter a valid word to search.")
+        if len(args.wordlist) == 0:
+            self.show_error_message("Please enter at least one word to search.")
             return
 
         self.ui.textResults.clear() # We clear the text edit before logging the current analysis
