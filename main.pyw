@@ -40,9 +40,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         logger = QtPlainTextLogger(self.ui.textResults)
 
         try:
-            analysis.analyze(args, logger)
+            input_file = open(args.input_filename, 'r')
+            self.analyze_file(args, input_file, logger)
+            input_file.close()
         except FileNotFoundError as e:
             self.show_error_message("File " + e.filename + " not found. Please enter a valid filename.")
+
+    def analyze_file(self, args, input_file, logger):
+        word_list = args.wordlist
+        word_count = len(word_list)
+
+        for i in range(word_count):
+            analysis.process_word(word_list[i], args, input_file, logger)
+            progress = int((i/word_count)*100)
+            self.ui.progressBar.setValue(progress)
+
+        self.ui.progressBar.setValue(100)
 
     def add_word(self):
         word = self.ui.lineWordToFind.text().strip()
