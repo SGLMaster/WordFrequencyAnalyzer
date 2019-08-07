@@ -2,6 +2,7 @@ class CliLogger:
     def log(self, string):
         print(string)
 
+
 class PlainTextFileLogger:
     def __init__(self, file):
         self.file = file
@@ -11,6 +12,7 @@ class PlainTextFileLogger:
 
     def close(self):
         self.file.close()
+
 
 class QtPlainTextLogger:
     def __init__(self, textEdit):
