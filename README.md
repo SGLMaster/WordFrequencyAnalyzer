@@ -8,13 +8,13 @@ You can run this program as in CLI or GUI version using the main.py or main.pyw 
 
 ## Command line options (CLI Version)
 
--f Input filename in which the word will be searched.
--o Output filename where the results of the analysis will be dumped (omit it to see the results in the console output).
--w Appends one word to the search list for the count.
--i Enables the program to count apperances for the "-ing" inflected form of the given words.
--s Enables the program to count apperances for the "-s" or "-es" inflected form of the given words.
--p Enables the program to count apperances for the "-ed" or "-d" inflected form of the given words.
--e Enables the program to count apperances for the "-er" or "-r" inflected form of the given words.
+-f Input filename in which the word will be searched.<br>
+-o Output filename where the results of the analysis will be dumped (omit it to see the results in the console output).<br>
+-w Appends one word to the search list for the count.<br>
+-i Enables the program to count apperances for the "-ing" inflected form of the given words.<br>
+-s Enables the program to count apperances for the "-s" or "-es" inflected form of the given words.<br>
+-p Enables the program to count apperances for the "-ed" or "-d" inflected form of the given words.<br>
+-e Enables the program to count apperances for the "-er" or "-r" inflected form of the given words.<br>
 
 ## CLI Example
 
