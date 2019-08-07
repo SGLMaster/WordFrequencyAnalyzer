@@ -136,6 +136,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
 
         self.ui.listWords.addItem(word)
+        self.ui.listWords.sortItems()
         self.ui.lineWordToFind.clear()
 
     def remove_word(self):
@@ -154,6 +155,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             word_list = file_text.split()
 
             self.ui.listWords.addItems(word_list)
+            self.ui.listWords.sortItems()
 
             words_file.close()
 
