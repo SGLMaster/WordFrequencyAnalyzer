@@ -34,7 +34,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.dialog_about = DialogAbout()
     
-    def open_input_file(self):
+    def open_input_files(self):
         self.input_filenames = QtWidgets.QFileDialog.getOpenFileNames(self, "File to analyze...", "", 
                                                         "Plain Text Files (*.txt);;All Files (*.*)")
 
@@ -67,17 +67,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.analyze_multiple_files(args, input_files_list, logger)
         except FileNotFoundError as e:
             self.show_error_message("File " + e.filename + " not found. Please enter a valid filename.")
-
-    def analyze_file(self, args, input_file, logger):
-        word_list = args.wordlist
-        word_count = len(word_list)
-
-        for i in range(word_count):
-            analysis.process_word(word_list[i], args, input_file, logger)
-            progress = int((i/word_count)*100)
-            self.ui.progressBar.setValue(progress)
-
-        self.ui.progressBar.setValue(100)
 
     def analyze_multiple_files(self, args, input_files_list, logger):
         word_list = args.wordlist
