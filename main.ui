@@ -218,7 +218,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources/icons.qrc">
-      <normaloff>:/icons/run.png</normaloff>:/icons/run.png</iconset>
+      <normaloff>:/icons/play.png</normaloff>:/icons/play.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -310,7 +310,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources/icons.qrc">
-      <normaloff>:/icons/icons8-plus-sign.png</normaloff>:/icons/icons8-plus-sign.png</iconset>
+      <normaloff>:/icons/plus.png</normaloff>:/icons/plus.png</iconset>
     </property>
     <property name="flat">
      <bool>false</bool>
@@ -395,7 +395,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources/icons.qrc">
-      <normaloff>:/icons/icons8-minus-sign.png</normaloff>:/icons/icons8-minus-sign.png</iconset>
+      <normaloff>:/icons/minus.png</normaloff>:/icons/minus.png</iconset>
     </property>
     <property name="flat">
      <bool>false</bool>

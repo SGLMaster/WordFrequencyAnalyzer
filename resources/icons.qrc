@@ -1,10 +1,9 @@
 <RCC>
   <qresource prefix="icons">
-    <file>icons8-minus-sign.png</file>
     <file>save.png</file>
-    <file>run.png</file>
+    <file>plus.png</file>
+    <file>minus.png</file>
+    <file>play.png</file>
     <file>open-file.png</file>
-    <file>icons8-plus-sign.png</file>
-    <file>plus-sign.bmp</file>
   </qresource>
 </RCC>
