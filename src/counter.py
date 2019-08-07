@@ -22,6 +22,23 @@ def regular_count(wordToFind, fileToAnalyze):
 
     return count
 
+def multiple_files_count(wordToFind, input_files_list):
+    count = 0
+
+    for fileToAnalyze in input_files_list:
+        fileToAnalyze.seek(0)
+        textInFile = fileToAnalyze.read()
+
+        # Removing the special characters from the text allows us to analyze files with formats like .html
+        textInFile = remove_special_chars(textInFile) 
+        wordsInText = textInFile.split()
+
+        for word in wordsInText:
+            if(word.lower() == wordToFind.lower()):
+                count = count + 1
+
+    return count
+
 def inflection_count(wordToFind, fileToAnalyze):
     count = 0
 

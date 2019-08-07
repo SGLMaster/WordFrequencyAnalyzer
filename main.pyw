@@ -35,9 +35,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.dialog_about = DialogAbout()
     
     def open_input_file(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName(self, "File to analyze...", "", 
-                                                        "Plain Text Files (*.txt);;All Files (*.*)")[0]
-        self.ui.lineInputFileName.setText(filename)
+        self.input_filenames = QtWidgets.QFileDialog.getOpenFileNames(self, "File to analyze...", "", 
+                                                        "Plain Text Files (*.txt);;All Files (*.*)")
+
+        filenames_str = ""
+        for filename in self.input_filenames[0]:
+            filenames_str += filename + '; '
+        
+        self.ui.lineInputFileName.setText(filenames_str)
 
     def run_analysis(self):
         args = self.generate_args_from_ui()
@@ -53,9 +58,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         logger = QtPlainTextLogger(self.ui.textResults)
 
         try:
-            input_file = open(args.input_filename, 'r')
-            self.analyze_file(args, input_file, logger)
-            input_file.close()
+            input_files_list = []
+
+            for i in range(len(self.input_filenames[0])):
+                input_file = open(self.input_filenames[0][i], 'r', encoding="utf8")
+                input_files_list.append(input_file)
+            
+            self.analyze_multiple_files(args, input_files_list, logger)
         except FileNotFoundError as e:
             self.show_error_message("File " + e.filename + " not found. Please enter a valid filename.")
 
@@ -65,6 +74,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         for i in range(word_count):
             analysis.process_word(word_list[i], args, input_file, logger)
+            progress = int((i/word_count)*100)
+            self.ui.progressBar.setValue(progress)
+
+        self.ui.progressBar.setValue(100)
+
+    def analyze_multiple_files(self, args, input_files_list, logger):
+        word_list = args.wordlist
+        word_count = len(word_list)
+
+        for i in range(word_count):
+            analysis.process_word_in_multiple_files(word_list[i], args, input_files_list, logger)
             progress = int((i/word_count)*100)
             self.ui.progressBar.setValue(progress)
 
