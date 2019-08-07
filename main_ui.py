@@ -92,7 +92,7 @@ class Ui_MainWindow(object):
         self.pushRun.setIconSize(QtCore.QSize(32, 32))
         self.pushRun.setObjectName("pushRun")
         self.lineWordToFind = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineWordToFind.setGeometry(QtCore.QRect(10, 80, 221, 21))
+        self.lineWordToFind.setGeometry(QtCore.QRect(10, 80, 201, 21))
         self.lineWordToFind.setObjectName("lineWordToFind")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(10, 60, 91, 16))
@@ -113,7 +113,7 @@ class Ui_MainWindow(object):
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
         self.pushAddWord = QtWidgets.QPushButton(self.centralwidget)
-        self.pushAddWord.setGeometry(QtCore.QRect(240, 80, 21, 23))
+        self.pushAddWord.setGeometry(QtCore.QRect(220, 80, 21, 23))
         self.pushAddWord.setStyleSheet("QPushButton:hover {\n"
 "    background-color: rgb(255, 240, 219);\n"
 "}")
@@ -159,6 +159,15 @@ class Ui_MainWindow(object):
         self.progressBar.setGeometry(QtCore.QRect(10, 520, 201, 23))
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
+        self.pushLoadWordsFromFile = QtWidgets.QPushButton(self.centralwidget)
+        self.pushLoadWordsFromFile.setGeometry(QtCore.QRect(240, 80, 21, 23))
+        self.pushLoadWordsFromFile.setStyleSheet("QPushButton:hover {\n"
+"    background-color: rgb(255, 240, 219);\n"
+"}")
+        self.pushLoadWordsFromFile.setText("")
+        self.pushLoadWordsFromFile.setIcon(icon)
+        self.pushLoadWordsFromFile.setFlat(False)
+        self.pushLoadWordsFromFile.setObjectName("pushLoadWordsFromFile")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 580, 21))
@@ -188,5 +197,6 @@ class Ui_MainWindow(object):
         self.pushSaveAs.setToolTip(_translate("MainWindow", "Save results as..."))
         self.label_5.setText(_translate("MainWindow", "List of Words to Find:"))
         self.pushRemoveWord.setToolTip(_translate("MainWindow", "Remove word"))
+        self.pushLoadWordsFromFile.setToolTip(_translate("MainWindow", "Load words from file..."))
 
 import icons_rc

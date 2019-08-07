@@ -232,7 +232,7 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>221</width>
+      <width>201</width>
       <height>21</height>
      </rect>
     </property>
@@ -291,7 +291,7 @@
    <widget class="QPushButton" name="pushAddWord">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>220</x>
       <y>80</y>
       <width>21</width>
       <height>23</height>
@@ -412,6 +412,34 @@
     </property>
     <property name="value">
      <number>0</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushLoadWordsFromFile">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>80</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Load words from file...</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover {
+	background-color: rgb(255, 240, 219);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources/icons.qrc">
+      <normaloff>:/icons/open-file.png</normaloff>:/icons/open-file.png</iconset>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

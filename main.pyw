@@ -18,6 +18,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.pushRun.clicked.connect(self.run_analysis)
         self.ui.pushAddWord.clicked.connect(self.add_word)
         self.ui.pushRemoveWord.clicked.connect(self.remove_word)
+        self.ui.pushLoadWordsFromFile.clicked.connect(self.load_words_from_file)
         self.ui.lineWordToFind.returnPressed.connect(self.add_word)
         self.ui.pushSaveAs.clicked.connect(self.save_results)
     
@@ -72,6 +73,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if not listWords: return        
         for word in listWords:
             self.ui.listWords.takeItem(self.ui.listWords.row(word))
+
+    def load_words_from_file(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, "Load words...", "", "Plain Text Files (*.txt)")[0]
+        try:
+            words_file = open(filename, 'r')
+            file_text = words_file.read()
+            word_list = file_text.split()
+
+            self.ui.listWords.addItems(word_list)
+
+            words_file.close()
+
+        except FileNotFoundError as e:
+            self.show_error_message("File " + e.filename + " not found. Please enter a valid filename.")
 
     def save_results(self):
         filename = QtWidgets.QFileDialog.getSaveFileName(self, "Save results...", "", "Plain Text Files (*.txt)")[0]
