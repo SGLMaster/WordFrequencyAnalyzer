@@ -24,7 +24,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self)
 
         # Connect events
-        self.ui.pushOpenInputFile.clicked.connect(self.open_input_file)
+        self.ui.pushOpenInputFile.clicked.connect(self.open_input_files)
         self.ui.pushRun.clicked.connect(self.run_analysis)
         self.ui.pushAddWord.clicked.connect(self.add_word)
         self.ui.pushRemoveWord.clicked.connect(self.remove_word)
