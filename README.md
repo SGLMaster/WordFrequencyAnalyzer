@@ -1,6 +1,6 @@
 # Word Frequency Analyzer
 
-**Count the number of appearances of a word and its inflected forms in a text.**
+**Count the number of appearances of a word and its inflected forms in a text file.**
 
 Word Frequency Analizer is a program that allows you to count the number of times a word appears inside a given file text.
 Furthermore, it also has the ability to count the apperances of its inflected forms with suffixes like "-ing" or "-s".
