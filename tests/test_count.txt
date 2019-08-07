@@ -2,9 +2,11 @@ This a sample test text. This text contains several words.
 This contains the word text written in different ways. For example:
 -text and Text and teXt and \text and *text
 
-Now we'll add the basic inflections for the "text" word as a verb:
+Now we'll add some inflections for the "text" word:
 -Text
 -Texting
 -Texted
 -Texts
 -Texter
+
+<Text><texted><Texting><=text=>
