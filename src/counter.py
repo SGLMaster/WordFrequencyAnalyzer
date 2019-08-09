@@ -61,25 +61,25 @@ class WordCount:
 
     def get_total_count(self): return self._total_count
 
-    def log(self, args, log_fcn=print):
+    def log(self, args, log_fcn=print, line_end=""):
         log_fcn(" " + self.get_word() + ": " +
-                str(self.get_normal_count()))
+                str(self.get_normal_count()) + line_end)
         if args.switch_ing:
             log_fcn("+" + self.get_word_ing() +
-                    ": " + str(self.get_ing_count()))
+                    ": " + str(self.get_ing_count()) + line_end)
         if args.switch_plural:
             log_fcn("+" + self.get_word_plural() +
-                    ": " + str(self.get_plural_count()))
+                    ": " + str(self.get_plural_count()) + line_end)
         if args.switch_past:
             log_fcn("+" + self.get_word_past() +
-                    ": " + str(self.get_past_count()))
+                    ": " + str(self.get_past_count()) + line_end)
         if args.switch_er:
             log_fcn("+" + self.get_word_er() +
-                    ": " + str(self.get_er_count()))
+                    ": " + str(self.get_er_count()) + line_end)
         if args.switch_ing or args.switch_plural or args.switch_past \
                 or args.switch_er:
-            log_fcn("---------------------------------------")
-            log_fcn("Total: " + str(self.get_total_count()) + "\n")
+            log_fcn("---------------------------------------" + line_end)
+            log_fcn("Total: " + str(self.get_total_count()) + "\n" + line_end)
 
     def _calculate_total(self):
         self._total_count = self._normal_count + self._ing_count \

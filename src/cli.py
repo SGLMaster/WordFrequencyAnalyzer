@@ -47,10 +47,18 @@ def try_to_analyze(args):
         for word in word_list:
             word_count = analysis.process_word(
                 word, args, args.input_filenames)
-            word_count.log(args)
+            
+            log_results(args, word_count)
 
         print("\nAnalysis completed succesfully\n")
 
     except FileNotFoundError as e:
         print("\nFile" + e.filename + "not found. Please enter a valid filename.")
         exit(1)
+
+def log_results(args, word_count):
+    if args.output_filename != None:
+        with open(args.output_filename, 'a', encoding="utf-8") as f:
+            word_count.log(args, f.write, "\n")
+    else:    
+        word_count.log(args)
