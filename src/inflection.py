@@ -36,19 +36,22 @@ def is_consonant(character):
 
 
 def inflect_ing(word):
-    if word.endswith('e') and not word.endswith('ee') and not word.endswith('ie'):
+    if word.endswith('e') and not word.endswith('ee') \
+        and not word.endswith('ie'):
         wordInflected = word[:-1] + 'ing'
     elif word.endswith('ie'):
         wordInflected = word[:-2] + 'ying'
-    elif get_syllable_count(word) == 1 and is_vowel(word[-2]) and is_consonant(word[-1]) \
-            and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
+    elif get_syllable_count(word) == 1 and is_vowel(word[-2]) \
+            and is_consonant(word[-1]) and word[-1] != 'x' \
+            and word[-1] != 'w' and word[-1] != 'y':
         # This is for cases with one syllable like "eat"
         if len(word) >= 3 and is_vowel(word[-3]):
             wordInflected = word + 'ing'
         else:
             wordInflected = word + word[-1] + 'ing'
-    elif get_syllable_count(word) == 2 and is_vowel(word[-2]) and is_consonant(word[-1]) \
-            and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
+    elif get_syllable_count(word) == 2 and is_vowel(word[-2]) \
+            and is_consonant(word[-1]) and word[-1] != 'x' \
+            and word[-1] != 'w' and word[-1] != 'y':
         if is_final_syllable_stressed(word):
             wordInflected = word + word[-1] + 'ing'
         else:
@@ -62,7 +65,8 @@ def inflect_ing(word):
 def inflect_plural(word):
     if word in irregular.plurals.keys():
         wordInflected = irregular.plurals[word]
-    elif word.endswith('s') or word.endswith('ss') or word.endswith('sh') or word.endswith('ch') or word.endswith('x') or word.endswith('o'):
+    elif word.endswith('s') or word.endswith('ss') or word.endswith('sh') \
+        or word.endswith('ch') or word.endswith('x') or word.endswith('o'):
         wordInflected = word + 'es'
     elif word.endswith('y') and len(word) >= 2 and is_consonant(word[-2]):
         wordInflected = word[:-1] + 'ies'
@@ -81,15 +85,17 @@ def inflect_past(word):
         wordInflected = word + 'd'
     elif word.endswith('y') and len(word) >= 2 and is_consonant(word[-2]):
         wordInflected = word[:-1] + 'ied'
-    elif get_syllable_count(word) == 1 and is_vowel(word[-2]) and is_consonant(word[-1]) \
-            and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
+    elif get_syllable_count(word) == 1 and is_vowel(word[-2])\
+            and is_consonant(word[-1]) and word[-1] != 'x' \
+            and word[-1] != 'w' and word[-1] != 'y':
         # This is for cases with one syllable like "wait"
         if len(word) >= 3 and is_vowel(word[-3]):
             wordInflected = word + 'ed'
         else:
             wordInflected = word + word[-1] + 'ed'
-    elif get_syllable_count(word) == 2 and is_vowel(word[-2]) and is_consonant(word[-1]) \
-            and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
+    elif get_syllable_count(word) == 2 and is_vowel(word[-2]) \
+            and is_consonant(word[-1]) and word[-1] != 'x'\
+            and word[-1] != 'w' and word[-1] != 'y':
         if is_final_syllable_stressed(word):
             wordInflected = word + word[-1] + 'ed'
         else:
@@ -104,15 +110,17 @@ def inflect_er(word):
         wordInflected = word + 'r'
     elif word.endswith('y') and len(word) >= 2 and is_consonant(word[-2]):
         wordInflected = word[:-1] + 'ier'
-    elif get_syllable_count(word) == 1 and is_vowel(word[-2]) and is_consonant(word[-1]) \
-            and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
+    elif get_syllable_count(word) == 1 and is_vowel(word[-2]) \
+            and is_consonant(word[-1]) and word[-1] != 'x' \
+            and word[-1] != 'w' and word[-1] != 'y':
         # This is for cases with one syllable like "wait"
         if len(word) >= 3 and is_vowel(word[-3]):
             wordInflected = word + 'er'
         else:
             wordInflected = word + word[-1] + 'er'
-    elif get_syllable_count(word) == 2 and is_vowel(word[-2]) and is_consonant(word[-1]) \
-            and word[-1] != 'x' and word[-1] != 'w' and word[-1] != 'y':
+    elif get_syllable_count(word) == 2 and is_vowel(word[-2]) \
+            and is_consonant(word[-1]) and word[-1] != 'x' \
+            and word[-1] != 'w' and word[-1] != 'y':
         if is_final_syllable_stressed(word):
             wordInflected = word + word[-1] + 'er'
         else:

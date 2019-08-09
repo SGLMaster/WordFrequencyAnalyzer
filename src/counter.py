@@ -62,8 +62,8 @@ class WordCount:
     def get_total_count(self): return self._total_count
 
     def _calculate_total(self):
-        self._total_count = self._normal_count + self._ing_count + self._plural_count \
-            + self._past_count + self._er_count
+        self._total_count = self._normal_count + self._ing_count \
+        + self._plural_count + self._past_count + self._er_count
 
 
 def remove_special_chars(text):

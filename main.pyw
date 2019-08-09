@@ -74,8 +74,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.threadpool = QtCore.QThreadPool()
 
     def open_input_files(self):
-        self.input_filenames = QtWidgets.QFileDialog.getOpenFileNames(self, "File to analyze...", "",
-                                                                      "Plain Text Files (*.txt);;PDF (*.pdf);;HTML (*.html);;All Files (*.*)")
+        self.input_filenames = QtWidgets.QFileDialog.getOpenFileNames(
+            self, "File to analyze...", "", 
+            "Plain Text Files (*.txt);;PDF (*.pdf);;HTML (*.html);;"
+            + "All Files (*.*)")
 
         filenames_str = ""
         for filename in self.input_filenames[0]:
@@ -136,7 +138,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         progress_percentage = (cur_word_number*100)//number_of_words
 
         self.ui.labelProgress.setText(
-            "Processed " + str(cur_word_number) + "/" + str(number_of_words) + " words")
+            "Processed " + str(cur_word_number) + "/" + str(number_of_words) 
+            + " words")
         self.ui.progressBar.setValue(progress_percentage)
 
         self.fill_results_tree(word_count)
@@ -202,7 +205,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         except FileNotFoundError as e:
             self.show_error_message(
-                "File " + e.filename + " not found. Please enter a valid filename.")
+                "File " + e.filename 
+                + " not found. Please enter a valid filename.")
 
     def save_results(self):
         filename = QtWidgets.QFileDialog.getSaveFileName(
@@ -234,7 +238,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         msg.setText(message)
         msg.show()
 
-    # This empty class is used to mock the args class we need to pass to the CLI method that performs the analysis
+    # This empty class is used to mock the args class we need to pass to
+    # the CLI method that performs the analysis
     class Arguments():
         pass
 
