@@ -66,6 +66,8 @@ def inflect_plural(word):
         wordInflected = word + 'es'
     elif word.endswith('y') and len(word) >= 2 and is_consonant(word[-2]):
         wordInflected = word[:-1] + 'ies'
+    elif word.endswith('f'):
+        wordInflected = word[:-1] + 'ves'
     else:
         wordInflected = word + 's'
 
