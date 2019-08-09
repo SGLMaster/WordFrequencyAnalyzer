@@ -72,7 +72,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def open_input_files(self):
         self.input_filenames = QtWidgets.QFileDialog.getOpenFileNames(self, "File to analyze...", "",
-                                                                      "Plain Text Files (*.txt);;All Files (*.*)")
+        "Plain Text Files (*.txt);;PDF (*.pdf);;HTML (*.html);;All Files (*.*)")
 
         filenames_str = ""
         for filename in self.input_filenames[0]:
