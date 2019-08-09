@@ -96,7 +96,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 "Please enter at least one word to search.")
             return
 
-        # We clear the text edit before logging the current analysis
         self.ui.treeResults.clear()
 
         worker = AnalysisWorker(self.run_analysis)
