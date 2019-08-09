@@ -124,6 +124,7 @@ class Ui_MainWindow(object):
         self.listWords.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.listWords.setObjectName("listWords")
         self.pushSaveAs = QtWidgets.QPushButton(self.centralwidget)
+        self.pushSaveAs.setEnabled(True)
         self.pushSaveAs.setGeometry(QtCore.QRect(540, 120, 21, 23))
         self.pushSaveAs.setStyleSheet("QPushButton:hover {\n"
 "    background-color: rgb(255, 240, 219);\n"

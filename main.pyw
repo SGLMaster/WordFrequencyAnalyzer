@@ -4,7 +4,6 @@ from main_ui import Ui_MainWindow
 from about_ui import Ui_DialogAbout
 
 import src.analysis as analysis
-from src.log import StrLogger
 
 import traceback
 import sys
@@ -73,6 +72,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.threadpool = QtCore.QThreadPool()
 
+        self.results = []
+
     def open_input_files(self):
         self.input_filenames = QtWidgets.QFileDialog.getOpenFileNames(
             self, "File to analyze...", "", 
@@ -97,6 +98,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
 
         self.ui.treeResults.clear()
+        self.results.clear()
 
         worker = AnalysisWorker(self.run_analysis)
         worker.signals.finished.connect(self.analysis_finished_callback)
@@ -123,6 +125,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(number_of_words):
             cur_word = word_list[i]
             word_count = analysis.process_word(cur_word, self.args, filenames)
+            self.results.append(word_count)
 
             progress_values["cur_word_number"] = i + 1
             progress_callback.emit(progress_values, word_count)
@@ -211,16 +214,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 + " not found. Please enter a valid filename.")
 
     def save_results(self):
+        if len(self.results) == 0:
+            self.show_error_message("There are no results to save.")
+            return
+
         filename = QtWidgets.QFileDialog.getSaveFileName(
             self, "Save results...", "", "Plain Text Files (*.txt)")[0]
-
-        try:
-            fileToWrite = open(filename, 'w')
-            results = self.ui.textResults.toPlainText()
-            fileToWrite.write(results)
-            fileToWrite.close
-        except FileNotFoundError:
-            pass
+            
+        if filename != '':
+            with open(filename, 'w', encoding="utf-8") as f:
+                for word_count in self.results:
+                    word_count.log(self.args, f.write, "\n")
 
     def show_about_dialog(self):
         self.dialog_about.show()
