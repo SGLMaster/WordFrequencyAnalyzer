@@ -228,7 +228,7 @@ class Ui_MainWindow(object):
         self.pushRemoveWord.setToolTip(_translate("MainWindow", "Remove word"))
         self.pushLoadWordsFromFile.setToolTip(_translate("MainWindow", "Load words from file..."))
         self.label_2.setText(_translate("MainWindow", "Progress:"))
-        self.labelProgress.setText(_translate("MainWindow", "Stopped"))
+        self.labelProgress.setText(_translate("MainWindow", "*** No data yet ***"))
         self.menuAbout.setTitle(_translate("MainWindow", "About"))
         self.actionAbout.setText(_translate("MainWindow", "About..."))
 

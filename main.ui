@@ -476,7 +476,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Stopped</string>
+     <string>*** No data yet ***</string>
     </property>
    </widget>
   </widget>
