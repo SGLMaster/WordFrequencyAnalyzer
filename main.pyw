@@ -109,22 +109,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.analyze_multiple_files(filenames, progress_callback)
 
+    def analyze_multiple_files(self, filenames, progress_callback):
+        word_list = self.args.wordlist
+        word_count = len(word_list)
+    
+        for i in range(word_count):
+            str_logger = StrLogger()
+            analysis.process_word(word_list[i], self.args, filenames, str_logger)
+            progress_percentage = int((i/word_count)*100)
+            progress_callback.emit(progress_percentage, str_logger.get_string())
+
     def analysis_finished(self):
         self.ui.progressBar.setValue(100)
 
     def analysis_progress(self, n, results_str):
         self.ui.progressBar.setValue(n)
         self.ui.textResults.appendPlainText(results_str)
-
-    def analyze_multiple_files(self, filenames, progress_callback):
-        word_list = self.args.wordlist
-        word_count = len(word_list)
-
-        for i in range(word_count):
-            str_logger = StrLogger()
-            analysis.process_word_in_multiple_files(word_list[i], self.args, filenames, str_logger)
-            progress_percentage = int((i/word_count)*100)
-            progress_callback.emit(progress_percentage, str_logger.get_string())
 
     def add_word(self):
         word = self.ui.lineWordToFind.text().strip()

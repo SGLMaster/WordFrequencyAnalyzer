@@ -60,15 +60,8 @@ def try_to_analyze(args, logger):
         print("\nStarting Analysis...\n")
 
         word_list = args.wordlist
-        input_files_list = []
-
-        for filename in args.input_filenames:
-            input_file = open(filename, 'r', encoding="utf8")
-            input_files_list.append(input_file)
-
         for word in word_list:
-            analysis.process_word_in_multiple_files(
-                word, args, input_files_list, logger)
+            analysis.process_word(word, args, args.input_filenames, logger)
 
         print("\nAnalysis completed succesfully\n")
 
