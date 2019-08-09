@@ -12,7 +12,7 @@ class WorkerSignals(QtCore.QObject):
     finished = QtCore.pyqtSignal()
     error = QtCore.pyqtSignal(tuple)
     result = QtCore.pyqtSignal(object)
-    progress = QtCore.pyqtSignal(dict, str)
+    progress = QtCore.pyqtSignal(dict, object)
 
 class AnalysisWorker(QtCore.QRunnable):
     def __init__(self, fn, *args, **kwargs):
@@ -92,7 +92,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
 
         # We clear the text edit before logging the current analysis
-        self.ui.textResults.clear()
+        self.ui.treeResults.clear()
 
         worker = AnalysisWorker(self.run_analysis)
         worker.signals.finished.connect(self.analysis_finished_callback)
@@ -116,24 +116,50 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         progress_values = {"cur_word_number": 0, "number_of_words": number_of_words}
 
         for i in range(number_of_words):
-            str_logger = StrLogger()
-            analysis.process_word(word_list[i], self.args, filenames, str_logger)
+            cur_word = word_list[i]
+            word_count = analysis.process_word(cur_word, self.args, filenames)
 
             progress_values["cur_word_number"] = i + 1
-            progress_callback.emit(progress_values, str_logger.get_string())
+            progress_callback.emit(progress_values, word_count)
 
     def analysis_finished_callback(self):
         self.ui.progressBar.setValue(100)
         self.ui.labelProgress.setText("Finished")
 
-    def analysis_progress_callback(self, progress_values, word_analysis_results):
+    def analysis_progress_callback(self, progress_values, word_count):
         cur_word_number = progress_values["cur_word_number"]
         number_of_words = progress_values["number_of_words"]
         progress_percentage = (cur_word_number*100)//number_of_words
 
         self.ui.labelProgress.setText("Processed " + str(cur_word_number) + "/" + str(number_of_words) + " words")
         self.ui.progressBar.setValue(progress_percentage)
-        self.ui.textResults.appendPlainText(word_analysis_results)
+
+        word = word_count.get_word()
+        word_ing = word_count.get_word_ing()
+        word_plural = word_count.get_word_plural()
+        word_past = word_count.get_word_past()
+        word_er = word_count.get_word_er()
+
+        normal_count = word_count.get_normal_count()
+        ing_count = word_count.get_ing_count()
+        plural_count = word_count.get_plural_count()
+        past_count = word_count.get_past_count()
+        er_count = word_count.get_er_count()
+        total_count = word_count.get_total_count()
+
+        word_item = QtWidgets.QTreeWidgetItem([word,  str(total_count)])
+        word_item.addChild(QtWidgets.QTreeWidgetItem([word,  str(normal_count)]))
+
+        if self.args.switch_ing:
+            word_item.addChild(QtWidgets.QTreeWidgetItem([word_ing,  str(ing_count)]))
+        if self.args.switch_plural:
+            word_item.addChild(QtWidgets.QTreeWidgetItem([word_plural,  str(plural_count)]))
+        if self.args.switch_past:
+            word_item.addChild(QtWidgets.QTreeWidgetItem([word_past,  str(past_count)]))
+        if self.args.switch_er:
+            word_item.addChild(QtWidgets.QTreeWidgetItem([word_er,  str(er_count)]))
+
+        self.ui.treeResults.addTopLevelItem(word_item)
 
     def add_word(self):
         word = self.ui.lineWordToFind.text().strip()

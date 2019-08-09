@@ -256,19 +256,6 @@
      <string>Add Word:</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="textResults">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>150</y>
-      <width>281</width>
-      <height>401</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
@@ -330,6 +317,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushSaveAs">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -478,6 +468,29 @@
     <property name="text">
      <string>*** No data yet ***</string>
     </property>
+   </widget>
+   <widget class="QTreeWidget" name="treeResults">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>150</y>
+      <width>281</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="columnCount">
+     <number>2</number>
+    </property>
+    <column>
+     <property name="text">
+      <string>Word</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Count</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

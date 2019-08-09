@@ -7,6 +7,60 @@ from pdfminer.pdfpage import PDFPage
 
 import src.inflection as infl
 
+
+class WordCount:
+    def __init__(self, word):
+        self._word = word
+        self._word_ing = infl.inflect_ing(word)
+        self._word_plural = infl.inflect_plural(word)
+        self._word_past = infl.inflect_past(word)
+        self._word_er = infl.inflect_er(word)
+
+        self._normal_count = 0
+        self._ing_count = 0
+        self._plural_count = 0
+        self._past_count = 0
+        self._er_count = 0
+        self._total_count = 0
+
+    def get_word(self): return self._word
+    def get_word_ing(self): return self._word_ing
+    def get_word_plural(self): return self._word_plural
+    def get_word_past(self): return self._word_past
+    def get_word_er(self): return self._word_er
+
+    def get_normal_count(self): return self._normal_count
+    def set_normal_count(self, count): 
+        self._normal_count = count
+        self._calculate_total()
+
+    def get_ing_count(self): return self._ing_count
+    def set_ing_count(self, count): 
+        self._ing_count = count
+        self._calculate_total()
+
+    def get_plural_count(self): return self._plural_count
+    def set_plural_count(self, count): 
+        self._plural_count = count
+        self._calculate_total()
+
+    def get_past_count(self): return self._past_count
+    def set_past_count(self, count): 
+        self._past_count = count
+        self._calculate_total()
+
+    def get_er_count(self): return self._er_count
+    def set_er_count(self, count): 
+        self._er_count = count
+        self._calculate_total()
+
+    def get_total_count(self): return self._total_count
+    
+    def _calculate_total(self):
+        self._total_count = self._normal_count + self._ing_count + self._plural_count \
+        + self._past_count + self._er_count
+
+
 def remove_special_chars(text):
     special_chars = '+-*\\/"\'<>$&#@_}{][|¡!¿?:;,.='
     for char in special_chars:

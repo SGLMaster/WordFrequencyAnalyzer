@@ -31,3 +31,7 @@ class StrLogger:
 
     def get_string(self):
         return self.string
+
+class TreeViewLogger:
+    def log(self, string):
+        pass
