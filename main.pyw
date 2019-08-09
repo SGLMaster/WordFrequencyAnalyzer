@@ -12,7 +12,7 @@ class WorkerSignals(QtCore.QObject):
     finished = QtCore.pyqtSignal()
     error = QtCore.pyqtSignal(tuple)
     result = QtCore.pyqtSignal(object)
-    progress = QtCore.pyqtSignal(int, str)
+    progress = QtCore.pyqtSignal(dict, str)
 
 class AnalysisWorker(QtCore.QRunnable):
     def __init__(self, fn, *args, **kwargs):
@@ -95,8 +95,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.textResults.clear()
 
         worker = AnalysisWorker(self.run_analysis)
-        worker.signals.finished.connect(self.analysis_finished)
-        worker.signals.progress.connect(self.analysis_progress)
+        worker.signals.finished.connect(self.analysis_finished_callback)
+        worker.signals.progress.connect(self.analysis_progress_callback)
 
         self.threadpool.start(worker)
 
@@ -111,20 +111,29 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def analyze_multiple_files(self, filenames, progress_callback):
         word_list = self.args.wordlist
-        word_count = len(word_list)
+        number_of_words = len(word_list)
     
-        for i in range(word_count):
+        progress_values = {"cur_word_number": 0, "number_of_words": number_of_words}
+
+        for i in range(number_of_words):
             str_logger = StrLogger()
             analysis.process_word(word_list[i], self.args, filenames, str_logger)
-            progress_percentage = int((i/word_count)*100)
-            progress_callback.emit(progress_percentage, str_logger.get_string())
 
-    def analysis_finished(self):
+            progress_values["cur_word_number"] = i + 1
+            progress_callback.emit(progress_values, str_logger.get_string())
+
+    def analysis_finished_callback(self):
         self.ui.progressBar.setValue(100)
+        self.ui.labelProgress.setText("Finished")
 
-    def analysis_progress(self, n, results_str):
-        self.ui.progressBar.setValue(n)
-        self.ui.textResults.appendPlainText(results_str)
+    def analysis_progress_callback(self, progress_values, word_analysis_results):
+        cur_word_number = progress_values["cur_word_number"]
+        number_of_words = progress_values["number_of_words"]
+        progress_percentage = (cur_word_number*100)//number_of_words
+
+        self.ui.labelProgress.setText("Processed " + str(cur_word_number) + "/" + str(number_of_words) + " words")
+        self.ui.progressBar.setValue(progress_percentage)
+        self.ui.textResults.appendPlainText(word_analysis_results)
 
     def add_word(self):
         word = self.ui.lineWordToFind.text().strip()
