@@ -98,7 +98,7 @@
      </font>
     </property>
     <property name="text">
-     <string>File to analyze:</string>
+     <string>Files to analyze:</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupInflectOpts">
@@ -117,7 +117,7 @@
      </font>
     </property>
     <property name="title">
-     <string>Inflect Options</string>
+     <string>Inflections</string>
     </property>
     <widget class="QCheckBox" name="checkIng">
      <property name="geometry">

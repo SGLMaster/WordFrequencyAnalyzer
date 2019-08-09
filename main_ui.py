@@ -213,8 +213,8 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Word Frequency Analyzer"))
         self.pushOpenInputFile.setToolTip(_translate("MainWindow", "Open file to analyze..."))
-        self.label.setText(_translate("MainWindow", "File to analyze:"))
-        self.groupInflectOpts.setTitle(_translate("MainWindow", "Inflect Options"))
+        self.label.setText(_translate("MainWindow", "Files to analyze:"))
+        self.groupInflectOpts.setTitle(_translate("MainWindow", "Inflections"))
         self.checkIng.setText(_translate("MainWindow", "-ing"))
         self.checkPlural.setText(_translate("MainWindow", "-s -es"))
         self.checkPast.setText(_translate("MainWindow", "-ed -d"))
