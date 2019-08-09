@@ -101,14 +101,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.threadpool.start(worker)
 
     def run_analysis(self, progress_callback):
-        input_files_list = []
+        filenames = []
 
         for i in range(len(self.input_filenames[0])):
-            input_file = open(
-                self.input_filenames[0][i], 'r', encoding="utf8")
-            input_files_list.append(input_file)
+            cur_filename = self.input_filenames[0][i]
+            filenames.append(cur_filename)
 
-        self.analyze_multiple_files(input_files_list, progress_callback)
+        self.analyze_multiple_files(filenames, progress_callback)
 
     def analysis_finished(self):
         self.ui.progressBar.setValue(100)
@@ -117,14 +116,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.progressBar.setValue(n)
         self.ui.textResults.appendPlainText(results_str)
 
-    def analyze_multiple_files(self, input_files_list, progress_callback):
+    def analyze_multiple_files(self, filenames, progress_callback):
         word_list = self.args.wordlist
         word_count = len(word_list)
 
         for i in range(word_count):
             str_logger = StrLogger()
-            analysis.process_word_in_multiple_files(
-                word_list[i], self.args, input_files_list, str_logger)
+            analysis.process_word_in_multiple_files(word_list[i], self.args, filenames, str_logger)
             progress_percentage = int((i/word_count)*100)
             progress_callback.emit(progress_percentage, str_logger.get_string())
 
