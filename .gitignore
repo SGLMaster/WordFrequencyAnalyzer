@@ -6,6 +6,9 @@ __pycache__/
 # Windows Thumbs Files
 */Thumbs.db
 
-# Local Folders for creating NSIST installer
+# Local Files for freezing to .exe
 extra_sources/
 build/
+dist/
+wfa.spec
+venv/
