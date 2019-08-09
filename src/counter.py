@@ -61,9 +61,29 @@ class WordCount:
 
     def get_total_count(self): return self._total_count
 
+    def log(self, args, log_fcn=print):
+        log_fcn(" " + self.get_word() + ": " +
+                str(self.get_normal_count()))
+        if args.switch_ing:
+            log_fcn("+" + self.get_word_ing() +
+                    ": " + str(self.get_ing_count()))
+        if args.switch_plural:
+            log_fcn("+" + self.get_word_plural() +
+                    ": " + str(self.get_plural_count()))
+        if args.switch_past:
+            log_fcn("+" + self.get_word_past() +
+                    ": " + str(self.get_past_count()))
+        if args.switch_er:
+            log_fcn("+" + self.get_word_er() +
+                    ": " + str(self.get_er_count()))
+        if args.switch_ing or args.switch_plural or args.switch_past \
+                or args.switch_er:
+            log_fcn("---------------------------------------")
+            log_fcn("Total: " + str(self.get_total_count()) + "\n")
+
     def _calculate_total(self):
         self._total_count = self._normal_count + self._ing_count \
-        + self._plural_count + self._past_count + self._er_count
+            + self._plural_count + self._past_count + self._er_count
 
 
 def remove_special_chars(text):
@@ -87,6 +107,7 @@ def get_word_count(word_to_find, filenames):
 
     return count
 
+
 def get_text_from_file(filename):
     text_in_file = ""
 
@@ -98,6 +119,7 @@ def get_text_from_file(filename):
 
     return text_in_file
 
+
 def get_text_from_pdf(filename):
     # PDF Miner
     resource_manager = PDFResourceManager()
@@ -106,8 +128,8 @@ def get_text_from_pdf(filename):
     page_interpreter = PDFPageInterpreter(resource_manager, converter)
 
     with open(filename, 'rb') as file_to_analyze:
-        for page in PDFPage.get_pages(file_to_analyze, caching=True, 
-        check_extractable=True):
+        for page in PDFPage.get_pages(file_to_analyze, caching=True,
+                                      check_extractable=True):
             page_interpreter.process_page(page)
 
     text_in_file = fake_file_handle.getvalue()
