@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icons">
+    <file>wfa.png</file>
+    <file>wfa.ico</file>
     <file>sgl-logo-text.png</file>
     <file>sgl-logo.png</file>
     <file>save.png</file>
