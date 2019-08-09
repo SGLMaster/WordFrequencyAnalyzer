@@ -6,7 +6,9 @@ from about_ui import Ui_DialogAbout
 import src.analysis as analysis
 from src.log import StrLogger
 
-import traceback, sys
+import traceback
+import sys
+
 
 class WorkerSignals(QtCore.QObject):
     finished = QtCore.pyqtSignal()
@@ -14,15 +16,16 @@ class WorkerSignals(QtCore.QObject):
     result = QtCore.pyqtSignal(object)
     progress = QtCore.pyqtSignal(dict, object)
 
+
 class AnalysisWorker(QtCore.QRunnable):
     def __init__(self, fn, *args, **kwargs):
         super(AnalysisWorker, self).__init__()
         self.fn = fn
         self.args = args
         self.kwargs = kwargs
-        self.signals = WorkerSignals()    
+        self.signals = WorkerSignals()
 
-        self.kwargs['progress_callback'] = self.signals.progress        
+        self.kwargs['progress_callback'] = self.signals.progress
 
     @QtCore.pyqtSlot()
     def run(self):
@@ -36,7 +39,7 @@ class AnalysisWorker(QtCore.QRunnable):
             self.signals.result.emit(result)
         finally:
             self.signals.finished.emit()
-        
+
 
 class DialogAbout(QtWidgets.QDialog, Ui_DialogAbout):
     def __init__(self, *args, **kwargs):
@@ -72,7 +75,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def open_input_files(self):
         self.input_filenames = QtWidgets.QFileDialog.getOpenFileNames(self, "File to analyze...", "",
-        "Plain Text Files (*.txt);;PDF (*.pdf);;HTML (*.html);;All Files (*.*)")
+                                                                      "Plain Text Files (*.txt);;PDF (*.pdf);;HTML (*.html);;All Files (*.*)")
 
         filenames_str = ""
         for filename in self.input_filenames[0]:
@@ -112,8 +115,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def analyze_multiple_files(self, filenames, progress_callback):
         word_list = self.args.wordlist
         number_of_words = len(word_list)
-    
-        progress_values = {"cur_word_number": 0, "number_of_words": number_of_words}
+
+        progress_values = {"cur_word_number": 0,
+                           "number_of_words": number_of_words}
 
         for i in range(number_of_words):
             cur_word = word_list[i]
@@ -131,33 +135,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         number_of_words = progress_values["number_of_words"]
         progress_percentage = (cur_word_number*100)//number_of_words
 
-        self.ui.labelProgress.setText("Processed " + str(cur_word_number) + "/" + str(number_of_words) + " words")
+        self.ui.labelProgress.setText(
+            "Processed " + str(cur_word_number) + "/" + str(number_of_words) + " words")
         self.ui.progressBar.setValue(progress_percentage)
 
-        word = word_count.get_word()
-        word_ing = word_count.get_word_ing()
-        word_plural = word_count.get_word_plural()
-        word_past = word_count.get_word_past()
-        word_er = word_count.get_word_er()
+        self.fill_results_tree(word_count)
 
-        normal_count = word_count.get_normal_count()
-        ing_count = word_count.get_ing_count()
-        plural_count = word_count.get_plural_count()
-        past_count = word_count.get_past_count()
-        er_count = word_count.get_er_count()
-        total_count = word_count.get_total_count()
-
-        word_item = QtWidgets.QTreeWidgetItem([word,  str(total_count)])
-        word_item.addChild(QtWidgets.QTreeWidgetItem([word,  str(normal_count)]))
+    def fill_results_tree(self, word_count):
+        word_item = QtWidgets.QTreeWidgetItem(
+            [word_count.get_word(),  str(word_count.get_total_count())])
+        word_item.addChild(QtWidgets.QTreeWidgetItem(
+            [word_count.get_word(),  str(word_count.get_normal_count())]))
 
         if self.args.switch_ing:
-            word_item.addChild(QtWidgets.QTreeWidgetItem([word_ing,  str(ing_count)]))
+            word_item.addChild(QtWidgets.QTreeWidgetItem(
+                [word_count.get_word_ing(),  str(word_count.get_ing_count())]))
         if self.args.switch_plural:
-            word_item.addChild(QtWidgets.QTreeWidgetItem([word_plural,  str(plural_count)]))
+            word_item.addChild(QtWidgets.QTreeWidgetItem(
+                [word_count.get_word_plural(),  str(word_count.get_plural_count())]))
         if self.args.switch_past:
-            word_item.addChild(QtWidgets.QTreeWidgetItem([word_past,  str(past_count)]))
+            word_item.addChild(QtWidgets.QTreeWidgetItem(
+                [word_count.get_word_past(),  str(word_count.get_past_count())]))
         if self.args.switch_er:
-            word_item.addChild(QtWidgets.QTreeWidgetItem([word_er,  str(er_count)]))
+            word_item.addChild(QtWidgets.QTreeWidgetItem(
+                [word_count.get_word_er(),  str(word_count.get_er_count())]))
 
         self.ui.treeResults.addTopLevelItem(word_item)
 
@@ -167,10 +168,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if word == '':
             self.show_information_message("Can't add empty word to list.")
             return
-        
-        wordlist = [str(self.ui.listWords.item(i).text().lower()) for i in range(self.ui.listWords.count())]
+
+        wordlist = [str(self.ui.listWords.item(i).text().lower())
+                    for i in range(self.ui.listWords.count())]
         if word.lower() in wordlist:
-            self.show_information_message("Word '" + word + "' is already in the list.")
+            self.show_information_message(
+                "Word '" + word + "' is already in the list.")
             return
 
         self.ui.listWords.addItem(word)
