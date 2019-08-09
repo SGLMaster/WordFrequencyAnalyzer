@@ -1,5 +1,5 @@
 import io
- 
+
 from pdfminer.converter import TextConverter
 from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfinterp import PDFResourceManager
@@ -30,35 +30,40 @@ class WordCount:
     def get_word_er(self): return self._word_er
 
     def get_normal_count(self): return self._normal_count
-    def set_normal_count(self, count): 
+
+    def set_normal_count(self, count):
         self._normal_count = count
         self._calculate_total()
 
     def get_ing_count(self): return self._ing_count
-    def set_ing_count(self, count): 
+
+    def set_ing_count(self, count):
         self._ing_count = count
         self._calculate_total()
 
     def get_plural_count(self): return self._plural_count
-    def set_plural_count(self, count): 
+
+    def set_plural_count(self, count):
         self._plural_count = count
         self._calculate_total()
 
     def get_past_count(self): return self._past_count
-    def set_past_count(self, count): 
+
+    def set_past_count(self, count):
         self._past_count = count
         self._calculate_total()
 
     def get_er_count(self): return self._er_count
-    def set_er_count(self, count): 
+
+    def set_er_count(self, count):
         self._er_count = count
         self._calculate_total()
 
     def get_total_count(self): return self._total_count
-    
+
     def _calculate_total(self):
         self._total_count = self._normal_count + self._ing_count + self._plural_count \
-        + self._past_count + self._er_count
+            + self._past_count + self._er_count
 
 
 def remove_special_chars(text):
@@ -78,13 +83,13 @@ def get_word_count(word_to_find, filenames):
             fake_file_handle = io.StringIO()
             converter = TextConverter(resource_manager, fake_file_handle)
             page_interpreter = PDFPageInterpreter(resource_manager, converter)
- 
+
             with open(cur_filename, 'rb') as file_to_analyze:
                 for page in PDFPage.get_pages(file_to_analyze, caching=True, check_extractable=True):
                     page_interpreter.process_page(page)
- 
+
             text_in_file = fake_file_handle.getvalue()
- 
+
             converter.close()
             fake_file_handle.close()
         else:
