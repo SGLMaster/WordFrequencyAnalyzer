@@ -138,8 +138,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def add_word(self):
         word = self.ui.lineWordToFind.text().strip()
 
-        if(word == ''):
+        if word == '':
             self.show_information_message("Can't add empty word to list.")
+            return
+        
+        wordlist = [str(self.ui.listWords.item(i).text().lower()) for i in range(self.ui.listWords.count())]
+        if word.lower() in wordlist:
+            self.show_information_message("Word '" + word + "' is already in the list.")
             return
 
         self.ui.listWords.addItem(word)
