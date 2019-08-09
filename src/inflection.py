@@ -1,4 +1,5 @@
 import pronouncing
+import src.irregular as irregular
 
 
 def get_syllable_count(word):
@@ -59,21 +60,8 @@ def inflect_ing(word):
 
 
 def inflect_plural(word):
-    irregular_plurals = {
-        "appendix": "appendices",
-        "cactus": "cacti",
-        "child": "children",
-        "goose": "geese",
-        "louse": "lice",
-        "man": "men",
-        "mouse": "mice",
-        "ox": "oxen",
-        "person": "people",
-        "tooth": "teeth"
-    }
-
-    if word in irregular_plurals.keys():
-        wordInflected = irregular_plurals[word]
+    if word in irregular.plurals.keys():
+        wordInflected = irregular.plurals[word]
     elif word.endswith('s') or word.endswith('ss') or word.endswith('sh') or word.endswith('ch') or word.endswith('x') or word.endswith('o'):
         wordInflected = word + 'es'
     elif word.endswith('y') and len(word) >= 2 and is_consonant(word[-2]):
@@ -85,19 +73,8 @@ def inflect_plural(word):
 
 
 def inflect_past(word):
-    irregular_participles = {
-        "be": "been",
-        "beat": "beaten",
-        "begin": "begun",
-        "blow": "blown",
-        "break": "broken",
-        "bring": "brought",
-        "build": "built",
-        "buy": "bought"
-    }
-
-    if word in irregular_participles.keys():
-        wordInflected = irregular_participles[word]
+    if word in irregular.past_participles.keys():
+        wordInflected = irregular.past_participles[word]
     elif word.endswith('e'):
         wordInflected = word + 'd'
     elif word.endswith('y') and len(word) >= 2 and is_consonant(word[-2]):
