@@ -2,9 +2,6 @@ import argparse
 
 import src.analysis as analysis
 
-from src.log import PlainTextFileLogger
-from src.log import CliLogger
-
 
 def run():
     parser = argparse.ArgumentParser(description="Word Frequency Analyzer")
@@ -12,9 +9,8 @@ def run():
 
     args = parser.parse_args()
     assert_arguments(args)
-    logger = get_logger(args)
 
-    try_to_analyze(args, logger)
+    try_to_analyze(args)
 
 
 def configure_switches(parser):
@@ -43,30 +39,17 @@ def assert_arguments(args):
         exit(1)
 
 
-def get_logger(args):
-    # If the user specified an output filename
-    if args.output_filename != None:
-        try:
-            output_file = open(args.output_filename, 'w')
-        except FileNotFoundError:
-            print("\nInvalid output filename: " + args.output_filename)
-        return PlainTextFileLogger(output_file)
-
-    return CliLogger()
-
-
-def try_to_analyze(args, logger):
+def try_to_analyze(args):
     try:
         print("\nStarting Analysis...\n")
 
         word_list = args.wordlist
         for word in word_list:
-            analysis.process_word(word, args, args.input_filenames, logger)
+            word_count = analysis.process_word(
+                word, args, args.input_filenames)
+            word_count.log(args)
 
         print("\nAnalysis completed succesfully\n")
-
-        if logger is PlainTextFileLogger:
-            logger.close()
 
     except FileNotFoundError as e:
         print("\nFile" + e.filename + "not found. Please enter a valid filename.")
