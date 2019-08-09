@@ -4,7 +4,7 @@ import src.inflection as infl
 
 def process_word(word, args, filenames, logger):
     # This is the default count without inflections
-    count = counter.multiple_files_count(word, filenames)
+    count = counter.get_word_count(word, filenames)
     logger.log(" " + word + ":" + str(count))
 
     total_count = count
@@ -28,6 +28,6 @@ def process_word(word, args, filenames, logger):
 
 def get_inflected_count(word, inflection_func, filenames, logger):
     inflected_word = inflection_func(word)
-    count = counter.multiple_files_count(inflected_word, filenames)
+    count = counter.get_word_count(inflected_word, filenames)
     logger.log("+" + inflected_word + ":" + str(count))
     return count

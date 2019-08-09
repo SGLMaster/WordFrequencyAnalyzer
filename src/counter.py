@@ -14,24 +14,7 @@ def remove_special_chars(text):
     return text
 
 
-def regular_count(word_to_find, file_to_analyze):
-    count = 0
-
-    file_to_analyze.seek(0)
-    textInFile = file_to_analyze.read()
-
-    # Removing the special characters from the text allows us to analyze files with formats like .html
-    textInFile = remove_special_chars(textInFile)
-    wordsInText = textInFile.split()
-
-    for word in wordsInText:
-        if(word.lower() == word_to_find.lower()):
-            count = count + 1
-
-    return count
-
-
-def multiple_files_count(word_to_find, filenames):
+def get_word_count(word_to_find, filenames):
     count = 0
 
     for cur_filename in filenames:
@@ -60,17 +43,5 @@ def multiple_files_count(word_to_find, filenames):
         for word in words_in_text:
             if(word.lower() == word_to_find.lower()):
                 count = count + 1
-
-    return count
-
-
-def inflection_count(word_to_find, file_to_analyze):
-    count = 0
-
-    count += regular_count(word_to_find, file_to_analyze)
-    count += regular_count(infl.inflect_ing(word_to_find), file_to_analyze)
-    count += regular_count(infl.inflect_plural(word_to_find), file_to_analyze)
-    count += regular_count(infl.inflect_past(word_to_find), file_to_analyze)
-    count += regular_count(infl.inflect_er(word_to_find), file_to_analyze)
 
     return count
