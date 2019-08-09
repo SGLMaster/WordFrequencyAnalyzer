@@ -152,13 +152,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         if self.args.switch_ing:
             word_item.addChild(QtWidgets.QTreeWidgetItem(
-                [word_count.get_word_ing(),  str(word_count.get_ing_count())]))
+                [word_count.get_word_ing(),  
+                str(word_count.get_ing_count())]))
         if self.args.switch_plural:
             word_item.addChild(QtWidgets.QTreeWidgetItem(
-                [word_count.get_word_plural(),  str(word_count.get_plural_count())]))
+                [word_count.get_word_plural(),  
+                str(word_count.get_plural_count())]))
         if self.args.switch_past:
             word_item.addChild(QtWidgets.QTreeWidgetItem(
-                [word_count.get_word_past(),  str(word_count.get_past_count())]))
+                [word_count.get_word_past(),  
+                str(word_count.get_past_count())]))
         if self.args.switch_er:
             word_item.addChild(QtWidgets.QTreeWidgetItem(
                 [word_count.get_word_er(),  str(word_count.get_er_count())]))
