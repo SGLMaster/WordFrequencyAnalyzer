@@ -25,7 +25,8 @@ Finally, you would like to get the results written in another text file called "
 All you need to do is run this inside the root program folder:
 
 ```
-python main.py -f "file.txt" -o "results.txt" -w "wait" -i -s
+python wfacli.py -f "file.txt" -o "results.txt" -w "wait" -i -s
 ```
 
 That would generate a results file with the count for each form of the word and the total count.
+You can also use multiple '-f' flags to scan several files and multiple '-w' for adding more than one word to count.
